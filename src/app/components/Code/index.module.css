@@ -1,0 +1,49 @@
+.code,
+.inlineCode,
+.highlightCode {
+  border-radius: 5px;
+  background: #1f1f1f;
+}
+
+.code,
+.highlightCode {
+  max-width: calc(100vw - 40px);
+  --size: 14px;
+  padding: 10px;
+  margin: 0 5px;
+  font-size: var(--size);
+  overflow-x: auto;
+}
+
+.code {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  white-space: pre-line;
+}
+
+.highlightCode {
+  white-space: pre
+}
+
+.code::-webkit-scrollbar {
+  width: 5px;
+  background: #3a3a3a;
+  border-radius: 0 0 5px 5px;
+}
+
+.code::-webkit-scrollbar-thumb {
+  background: #4d4d4d;
+  border-radius: 5px;
+}
+
+.code img {
+  display: inline-block;
+  width: var(--size)
+}
+
+.inlineCode {
+  display: inline-flex;
+  padding: 3px 5px;
+  font-size: 14px;
+}
