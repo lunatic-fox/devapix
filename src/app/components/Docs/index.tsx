@@ -111,6 +111,9 @@ export default function Docs({ children, refs }: {
               })
             }
           </details>
+          <Link href='/docs/credits'>
+            <section className={hightlight('/docs/credits')}>Credits</section>
+          </Link>
         </aside>
         <section className={styles.articleWrapper}>
           <article className={styles.article}>{children}</article>
