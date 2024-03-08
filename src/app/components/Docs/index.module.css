@@ -21,8 +21,7 @@
   align-self: center;
 }
 
-.headerLogo,
-.header img {
+.headerLogo {
   --size: 32px;
   width: var(--size);
   height: var(--size);
@@ -142,8 +141,7 @@
 }
 
 .pages button img {
-  width: 12px;
-  margin: 0 5px;
+  margin: 0 5px
 }
 
 @media (max-width: 800px) {

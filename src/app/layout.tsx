@@ -6,17 +6,11 @@ const nunitoSans = Nunito_Sans({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Devapix',
-  description: 'Devicon on API',
-  icons: {
-    icon: '/img/logo.svg',
-  }
+  description: 'Devicon API',
+  icons: { icon: '/img/logo.svg' }
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang='en'>
       <body className={nunitoSans.className}>{children}</body>

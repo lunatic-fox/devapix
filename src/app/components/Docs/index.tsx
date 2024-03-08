@@ -35,13 +35,14 @@ export default function Docs({ children, refs }: {
   return (
     <main className={styles.main}>
       <header className={styles.header}>
-        <Image
-          src='/img/logo.svg'
-          width={24}
-          height={24}
-          alt='Devapix logo'
-          priority={true}
-          className={styles.headerLogo} />
+        <Link href='/' className={styles.headerLogo} >
+          <Image
+            src='/img/logo.svg'
+            width={32}
+            height={32}
+            alt='Devapix logo'
+            priority={true}/>
+        </Link>
         <section className={styles.headerDescription}>Docs</section>
         <section
           className={styles.headerOptionsWrapper}
@@ -120,8 +121,8 @@ export default function Docs({ children, refs }: {
                   <button>
                     <Image
                       src='/img/icon/left.svg'
-                      width={24}
-                      height={24}
+                      width={12}
+                      height={12}
                       alt='Left'
                       priority={true} />
                     {previousDoc}
@@ -136,8 +137,8 @@ export default function Docs({ children, refs }: {
                     {nextDoc}
                     <Image
                       src='/img/icon/right.svg'
-                      width={24}
-                      height={24}
+                      width={12}
+                      height={12}
                       alt='Right'
                       priority={true} />
                   </button>

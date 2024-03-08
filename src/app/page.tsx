@@ -20,7 +20,7 @@ export default function Home() {
         <Link href='https://devicon.dev'>
           <section className={styles.card}>
             <Image
-              src='/api/devicon'
+              src='https://devapix.vercel.app/api/devicon'
               width={48}
               height={48}
               alt='Devicon Logo'
@@ -33,6 +33,7 @@ export default function Home() {
             </article>
           </section>
         </Link>
+
         <Link href='/docs/introduction'>
           <section className={styles.card}>
             <Image
@@ -49,6 +50,7 @@ export default function Home() {
             </article>
           </section>
         </Link>
+
         <Link href='#'>
           <section className={styles.card}>
           <section className={styles.underConstruction}>
@@ -73,6 +75,7 @@ export default function Home() {
             </article>
           </section>
         </Link>
+
       </section>
     </main>
   )
