@@ -2,51 +2,43 @@ import { CSSColorList } from 'kolorz/src/css-color-list/css-color-list'
 import { RequestObject } from '../types'
 import kolorz from 'kolorz'
 
-export default function requestObject(q: string) {
+export default function requestObject(q: URLSearchParams) {
   const resObject: RequestObject = {}
-  const shorthand = q.split(',')
 
-  shorthand.forEach(p => {
-    p = p.replace(/\s|'|\+/g, '')
-
+  Object.entries(Object.fromEntries(q.entries())).forEach(([k, v]) => {
     // Icon
-    if (p.match(/^(dot-net|[a-z0-9.]+)$/i)) resObject.i = p
+    if (v === '' && k.match(/^(dot-net|[a-z0-9.]+)$/i))
+      resObject.i = k
 
-    // Icon and project version
-    if (p.match(/^[a-z0-9]+@(\d+|(\d+\.){1,2}\d+)$/i))
-      [resObject.i, resObject.pv] = p.split('@')
+    if (k.match(/^pv|project-version$/) && v.match(/^(\d+|(\d+\.){1,2}\d+)$/))
+      resObject.pv = v
 
-    const pSplit = p.split(':')
-    if (pSplit.length === 2) {
-      const ps = pSplit[1]
+    if (k.match(/^tag$/) && v.match(/^.+$/))
+      resObject.tag = v
 
-      // Search tag
-      if (p.match(/^tag:.+?$/)) resObject.tag = ps
+    // Version
+    if (k.match(/^v(ersion)?$/) && v.match(/^(o(riginal)?|p(lain)?|l(ine)?)(w|-wordmark)?$/))
+      resObject.v = v
 
-      // Icon version
-      if (p.match(/^v(ersion)?:(o(riginal)?|p(lain)?|l(ine)?)(w|-wordmark)?$/))
-        resObject.v = ps.match(/^(original|plain|line)(-wordmark)?$/) ?
-          ps.split('-').map(e => e[0]).join('')
-          : ps
+    // Color
+    if (k.match(/^c(olor)?$/i)) {
+      // CSS
+      if (v.match(/^[a-z]+$/))
+        resObject.c = kolorz.css(v as CSSColorList).toHex
 
-      // Icon CSS color
-      if (p.match(/^c(olor)?:[a-z]+$/i))
-        resObject.c = kolorz.css(ps as CSSColorList).toHex
-    
-      // Icon color
-      if (p.match(/^c(olor)?:([a-f0-9]{3}|[a-f0-9]{4}|[a-f0-9]{6}|[a-f0-9]{8})$/i))
-        resObject.c = `#${ps}`
-    
-      // Icon theme
-      if (p.match(/^t(heme)?:(d(ark)?|l(ight)?)$/))
-        resObject.t = ps.match(/^dark|light$/) ? ps[0] : ps
-
-      // Icon size
-      if (p.match(/^s(ize)?:\d+$/))
-        resObject.s = +ps
+      // Hexadecimal
+      if (v.match(/^([a-f0-9]{3}|[a-f0-9]{4}|[a-f0-9]{6}|[a-f0-9]{8})$/))
+        resObject.c = `#${v}`
     }
-  })
 
-  if (resObject.c && resObject.t) delete resObject.c
+    // Theme
+    if (k.match(/^t(heme)?$/) && v.match(/^(d(ark)?|l(ight)?)$/))
+      resObject.t = v[0]
+
+    // Size
+    if (k.match(/^s(ize)?$/) && v.match(/^\d+$/))
+      resObject.s = +v
+  })
+  
   return resObject
 }

@@ -1,5 +1,3 @@
-export type Query = { params: { shorthand: string } }
-
 export type RequestObject = {
   /** Project version */ pv?: string
   /** Icon            */ i?: string
