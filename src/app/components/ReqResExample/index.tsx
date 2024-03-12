@@ -2,17 +2,19 @@ import Image from 'next/image'
 import Code from '../Code'
 import styles from './index.module.css'
 
-const API_URL = 'https://devapix.vercel.app/api'
-export default function ReqResExample({ reqs }: {
+// const API_URL = 'https://devapix.vercel.app/api'
+const API_URL = '/api' // TEST - Remove before merge to main branch! 
+export default function ReqResExample({ reqs, exampleTitle }: {
   reqs: string[] | { request: string, code: string }[]
+  exampleTitle?: string
 }) {
   let examples = reqs.map((req, i) => {
     const icon = { name: '', size: 128 }
 
     if (typeof req === 'string') {
       const requestProps = req
-        .split(',')
-        .map(e => e.split(':'))
+        .split('&')
+        .map(e => e.split('='))
 
       requestProps.forEach(e => {
         if (e.length === 1) icon.name = e[0]
@@ -57,7 +59,7 @@ export default function ReqResExample({ reqs }: {
   return (
     <section>
       <br />
-      <h4>Example{examples.length > 1 ? 's' : ''}</h4>
+      <h4>{exampleTitle ? exampleTitle : `Example${examples.length > 1 ? 's' : ''}`}</h4>
       {examples}
     </section>
   )

@@ -10,8 +10,8 @@ export default function requestObject(q: URLSearchParams) {
     if (v === '' && k.match(/^(dot-net|[a-z0-9.]+)$/i))
       resObject.i = k
 
-    if (k.match(/^pv|project-version$/) && v.match(/^(\d+|(\d+\.){1,2}\d+)$/))
-      resObject.pv = v
+    if (k.match(/^pv|project-version$/) && v.match(/^(dev|develop|\d+(\.\d+){1,2})$/))
+      resObject.pv = v.match('dev') ? 'develop' : v
 
     if (k.match(/^tag$/) && v.match(/^.+$/))
       resObject.tag = v
