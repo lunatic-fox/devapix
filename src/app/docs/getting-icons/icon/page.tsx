@@ -16,7 +16,7 @@ export default function Page() {
       <p>
         <Code ic='icon' /> is a mandatory implicit property of the API request, when alone and if it is a valid technology name, the request returns the default icon for the specified technology.
       </p>
-      <Code c={'@[connector]/[ICON_NAME]'} />
+      <Code c={`@[connector]?[ICON_NAME]`} />
 
       <ReqResExample reqs={['java']} />
     </Docs>

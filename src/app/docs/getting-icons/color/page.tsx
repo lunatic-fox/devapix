@@ -23,12 +23,12 @@ export default function Page() {
         This property colors only icons with one color, therefore if the default icon has more than one color it returns the <Code ic='plain' /> icon instead.
       </p>
       <Code c={`
-        @[connector]/[ICON_NAME],color:[COLOR]
-        @[connector]/[ICON_NAME],c:[COLOR]`} />
+        @[connector]?[ICON_NAME]&color=[COLOR]
+        @[connector]?[ICON_NAME]&c=[COLOR]`} />
 
       <ReqResExample reqs={[
-        'python,color:f0a',
-        'python,c:gold'
+        'python&color=f0a',
+        'python&c=gold'
       ]} />
     </Docs>
   )

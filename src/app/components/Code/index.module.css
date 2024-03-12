@@ -7,12 +7,22 @@
 
 .code,
 .highlightCode {
-  max-width: calc(100vw - 40px);
+  max-width: calc(100vw - 272px);
   --size: 14px;
   padding: 10px;
   margin: 0 5px;
   font-size: var(--size);
-  overflow-x: auto;
+  overflow-x: hidden;
+}
+
+.code:hover,
+.highlightCode:hover {
+  overflow-x: scroll;
+}
+
+.code span,
+.highlightCode span {
+  white-space: preserve nowrap;
 }
 
 .code {
@@ -23,18 +33,7 @@
 }
 
 .highlightCode {
-  white-space: pre
-}
-
-.code::-webkit-scrollbar {
-  width: 5px;
-  background: #3a3a3a;
-  border-radius: 0 0 5px 5px;
-}
-
-.code::-webkit-scrollbar-thumb {
-  background: #4d4d4d;
-  border-radius: 5px;
+  white-space: pre;
 }
 
 .code img {
@@ -46,4 +45,11 @@
   display: inline-flex;
   padding: 3px 5px;
   font-size: 14px;
+}
+
+@media (max-width: 800px) {
+  .code,
+  .highlightCode {
+    max-width: calc(100vw - 80px);
+  }
 }

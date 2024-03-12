@@ -2,10 +2,10 @@ import Image from 'next/image'
 import Code from '../Code'
 import styles from './index.module.css'
 
+const API_URL = 'https://devapix.vercel.app/api'
 export default function ReqResExample({ reqs }: {
   reqs: string[] | { request: string, code: string }[]
 }) {
-
   let examples = reqs.map((req, i) => {
     const icon = { name: '', size: 128 }
 
@@ -25,11 +25,11 @@ export default function ReqResExample({ reqs }: {
           {i > 0 ? <div className={styles.line}></div> : ''}
           <section className={styles.reqResWrapper}>
             <h5>Request</h5>
-            <Code c={`@[connector]/${req}`} />
+            <Code c={`${API_URL}?${req}`} />
             <h5>Response</h5>
             <section className={styles.reqResImgWrapper}>
               <Image
-                src={`https://devapix.vercel.app/api/${req}`}
+                src={`${API_URL}?${req}`}
                 width={icon.size}
                 height={icon.size}
                 alt={icon.name}
@@ -45,7 +45,7 @@ export default function ReqResExample({ reqs }: {
           {i > 0 ? <div className={styles.line}></div> : ''}
           <section className={styles.reqResWrapper}>
             <h5>Request</h5>
-            <Code c={`@[connector]/${req.request}`} />
+            <Code c={`${API_URL}/${req.request}`} />
             <h5>Response</h5>
             <Code h='json' c={req.code} />
           </section>

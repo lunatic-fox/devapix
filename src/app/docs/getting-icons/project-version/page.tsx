@@ -16,11 +16,19 @@ export default function Page() {
       <p>
         It is possible to get an icon from a previous version of Devicon by specifying the version after the technology name.
       </p>
-      <Code c={'@[connector]/[ICON_NAME]@[PROJECT_VERSION]'} />
+      <p>
+        This property can be accessed by the key <Code ic='project-version'/> or <Code ic='pv'/>.
+      </p>
+      <Code c={`
+        @[connector]?[ICON_NAME]&project-version=[PROJECT_VERSION]
+        @[connector]?[ICON_NAME]&pv=[PROJECT_VERSION]
+      `} />
 
       <ReqResExample reqs={[
         'twitter',
-        'twitter@2.15.1'
+        'twitter&project-version=2.15.1',
+        'rust',
+        'rust&pv=2.15.1'
       ]} />
 
       <p>

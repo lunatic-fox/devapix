@@ -21,12 +21,12 @@ export default function Page() {
       </p>
 
       <Code c={`
-        @[connector]/[ICON_NAME],theme:dark
-        @[connector]/[ICON_NAME],t:d`} />
+        @[connector]?[ICON_NAME]&theme=dark
+        @[connector]?[ICON_NAME]&t=d`} />
 
       <ReqResExample reqs={[
-        'p5js,theme:dark',
-        'p5js,t:l'
+        'p5js&theme=dark',
+        'p5js&t=l'
       ]} />
     </Docs>
   )
