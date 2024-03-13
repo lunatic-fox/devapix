@@ -2,17 +2,18 @@ import Image from 'next/image'
 import Code from '../Code'
 import styles from './index.module.css'
 
-export default function ReqResExample({ reqs }: {
+const API_URL = 'https://devapix.vercel.app/api'
+export default function ReqResExample({ reqs, exampleTitle }: {
   reqs: string[] | { request: string, code: string }[]
+  exampleTitle?: string
 }) {
-
   let examples = reqs.map((req, i) => {
     const icon = { name: '', size: 128 }
 
     if (typeof req === 'string') {
       const requestProps = req
-        .split(',')
-        .map(e => e.split(':'))
+        .split('&')
+        .map(e => e.split('='))
 
       requestProps.forEach(e => {
         if (e.length === 1) icon.name = e[0]
@@ -25,11 +26,11 @@ export default function ReqResExample({ reqs }: {
           {i > 0 ? <div className={styles.line}></div> : ''}
           <section className={styles.reqResWrapper}>
             <h5>Request</h5>
-            <Code c={`@[connector]/${req}`} />
+            <Code c={`${API_URL}?${req}`} />
             <h5>Response</h5>
             <section className={styles.reqResImgWrapper}>
               <Image
-                src={`https://devapix.vercel.app/api/${req}`}
+                src={`${API_URL}?${req}`}
                 width={icon.size}
                 height={icon.size}
                 alt={icon.name}
@@ -45,7 +46,7 @@ export default function ReqResExample({ reqs }: {
           {i > 0 ? <div className={styles.line}></div> : ''}
           <section className={styles.reqResWrapper}>
             <h5>Request</h5>
-            <Code c={`@[connector]/${req.request}`} />
+            <Code c={`${API_URL}/${req.request}`} />
             <h5>Response</h5>
             <Code h='json' c={req.code} />
           </section>
@@ -57,7 +58,7 @@ export default function ReqResExample({ reqs }: {
   return (
     <section>
       <br />
-      <h4>Example{examples.length > 1 ? 's' : ''}</h4>
+      <h4>{exampleTitle ? exampleTitle : `Example${examples.length > 1 ? 's' : ''}`}</h4>
       {examples}
     </section>
   )

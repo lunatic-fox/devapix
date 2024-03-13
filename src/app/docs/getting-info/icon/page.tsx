@@ -16,11 +16,11 @@ export default function Page() {
       <p>
         It is possible to get information, based on <Code ic='devicon.json' /> file, about the icon via <Code ic='project' /> response property. Also check the request values through <Code ic='iconRequest' /> if the properties to modify the icon are passed.
       </p>
-      <Code c='@[connector]/info/[ICON_NAME]' />
+      <Code c='@[connector]/info?[ICON_NAME]' />
 
       <ReqResExample reqs={[
         {
-          request: 'info/nodejs',
+          request: 'info?nodejs',
           code: `
             {
               "project": {
@@ -50,7 +50,7 @@ export default function Page() {
             }`
         },
         {
-          request: 'info/rust,v:p,c:blue,s:50',
+          request: 'info?rust&v=p&c=blue&s=50',
           code: `
             {
               "project": {

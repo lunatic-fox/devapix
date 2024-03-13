@@ -14,15 +14,23 @@ export default function Page() {
         Getting Icons: Project Version
       </h2>
       <p>
-        It is possible to get an icon from a previous version of Devicon by specifying the version after the technology name.
+        It is possible to get an icon from a previous or next version of Devicon by specifying the version through <Code ic='project-version' /> or <Code ic='pv' /> key.
       </p>
-      <Code c={'@[connector]/[ICON_NAME]@[PROJECT_VERSION]'} />
-
+      <Code c={`
+        @[connector]?[ICON_NAME]&project-version=[PROJECT_VERSION]
+        @[connector]?[ICON_NAME]&pv=[PROJECT_VERSION]
+      `} />
+      <p>
+        Property value can be <Code ic='dev' /> or <Code ic='develop' /> to access the development branch and get early access to new icons or the project version number since version <Code ic='2.7' />. Versions before <Code ic='2.7' /> will not work because project compatibility.
+      </p>
       <ReqResExample reqs={[
+        'chakraui&pv=develop',
+        'php&pv=2.7',
         'twitter',
-        'twitter@2.15.1'
+        'twitter&project-version=2.15.1',
+        'rust',
+        'rust&pv=2.15.1'
       ]} />
-
       <p>
         When the project version is not specified the request returns the latest project version icon for the named technology.
       </p>

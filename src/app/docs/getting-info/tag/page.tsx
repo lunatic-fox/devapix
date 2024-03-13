@@ -15,11 +15,11 @@ export default function Page() {
       <p>
         <Code ic='tag' /> property allows access to a list of icon names that have the same searched tag value in their <Code ic='tags' /> array of <Code ic='devicon.json' /> file.
       </p>
-      <Code c='@[connector]/info/tag:[TAG]' />
+      <Code c='@[connector]/info?tag=[TAG]' />
 
       <ReqResExample reqs={[
         {
-          request: 'info/tag:language',
+          request: 'info?tag=language',
           code: `
             {
               "tag": "language",

@@ -15,7 +15,7 @@ export default function Page() {
         By using Devapix, the selected icon can be preflight modified in some properties, such as color and size. Also this API can return information about the icons.
       </p>
       <p>
-        This API uses only GET method and the base URI is <Code ic={'https://devapix.vercel.app/api'} /> that will be represented through this documentation as <Code ic={'@[connector]'} /> symbol.
+        This API uses only GET method and the base URL is <Code ic={'https://devapix.vercel.app/api'} /> that will be represented through this documentation as <Code ic={'@[connector]'} /> symbol.
       </p>
     </Docs>
   )
