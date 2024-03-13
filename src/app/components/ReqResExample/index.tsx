@@ -2,8 +2,7 @@ import Image from 'next/image'
 import Code from '../Code'
 import styles from './index.module.css'
 
-// const API_URL = 'https://devapix.vercel.app/api'
-const API_URL = '/api' // TEST - Remove before merge to main branch! 
+const API_URL = 'https://devapix.vercel.app/api'
 export default function ReqResExample({ reqs, exampleTitle }: {
   reqs: string[] | { request: string, code: string }[]
   exampleTitle?: string

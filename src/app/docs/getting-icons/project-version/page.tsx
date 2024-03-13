@@ -14,17 +14,14 @@ export default function Page() {
         Getting Icons: Project Version
       </h2>
       <p>
-        It is possible to get an icon from a previous version of Devicon by specifying the version after the technology name.
-      </p>
-      <p>
-        This property can be accessed by the key <Code ic='project-version' /> or <Code ic='pv' />.
+        It is possible to get an icon from a previous or next version of Devicon by specifying the version through <Code ic='project-version' /> or <Code ic='pv' /> key.
       </p>
       <Code c={`
         @[connector]?[ICON_NAME]&project-version=[PROJECT_VERSION]
         @[connector]?[ICON_NAME]&pv=[PROJECT_VERSION]
       `} />
       <p>
-        Property values can be <Code ic='dev' /> or <Code ic='develop' /> to access the development branch and get early access to new icons or the project version number since version <Code ic='2.7' />.
+        Property value can be <Code ic='dev' /> or <Code ic='develop' /> to access the development branch and get early access to new icons or the project version number since version <Code ic='2.7' />. Versions before <Code ic='2.7' /> will not work because project compatibility.
       </p>
       <ReqResExample reqs={[
         'chakraui&pv=develop',
