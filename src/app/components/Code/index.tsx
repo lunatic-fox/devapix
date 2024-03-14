@@ -34,9 +34,12 @@ export default function Code({ c, ic, h }: { c?: string, ic?: string, h?: string
   }
 
   return (
-    h && c ? <code
-      className={`${styles.highlightCode} ${sometypeMono.className}`}
-      dangerouslySetInnerHTML={{ __html: icons(c) }}></code>
+    h && c ?
+      <section className={styles.highlightWrapper}>
+        <code
+          className={`${styles.highlightCode} ${sometypeMono.className}`}
+          dangerouslySetInnerHTML={{ __html: icons(c) }}></code>
+      </section>
       : c ?
         <code
           className={`${styles.code} ${sometypeMono.className}`}

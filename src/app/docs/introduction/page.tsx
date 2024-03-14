@@ -9,10 +9,10 @@ export default function Page() {
     }}>
       <h2>Introduction</h2>
       <p>
-        Devapix is the Devicon project API. Devicon is a set of icons representing programming languages, designing, and development tools.
+        Devapix is a derivative Devicon project to serve icons through an API. Devicon is a set of icons representing programming languages, designing, and development tools.
       </p>
       <p>
-        By using Devapix, the selected icon can be preflight modified in some properties, such as color and size. Also this API can return information about the icons.
+        The main feature of Devapix is to modify icons in some properties such as color and size on the fly. However, it is possible to have information about icons and early access to new ones as well.
       </p>
       <p>
         This API uses only GET method and the base URL is <Code ic={'https://devapix.vercel.app/api'} /> that will be represented through this documentation as <Code ic={'@[connector]'} /> symbol.

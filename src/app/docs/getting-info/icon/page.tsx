@@ -14,7 +14,7 @@ export default function Page() {
         Getting Info: Icon
       </h2>
       <p>
-        It is possible to get information, based on <Code ic='devicon.json' /> file, about the icon via <Code ic='project' /> response property. Also check the request values through <Code ic='iconRequest' /> if the properties to modify the icon are passed.
+        It is possible to get information, based on <Code ic='devicon.json' /> file, about the icon via <Code ic='project' /> response property. Also check the request values through <Code ic='request' /> if the properties to modify the icon are passed.
       </p>
       <Code c='@[connector]/info?[ICON_NAME]' />
 
@@ -22,60 +22,56 @@ export default function Page() {
         {
           request: 'info?nodejs',
           code: `
-            {
-              "project": {
-                "version": "latest",
-                "altnames": [],
-                "actualIconVersions": [
-                  "original",
-                  "plain",
-                  "line",
-                  "original-wordmark",
-                  "plain-wordmark",
-                  "line-wordmark"
-                ],
-                "tags": [
-                  "javascript",
-                  "language"
-                ],
-                "defaultColor": "#5fa04e"
-              },
-              "iconRequest": {
-                "name": "nodejs",
-                "version": "original",
-                "color": null,
-                "theme": null,
-                "size": 128
-              }
-            }`
+          {
+            "project": {
+              "version": "latest",
+              "altnames": [],
+              "iconVersions": [
+                "original",
+                "plain",
+                "line",
+                "original-wordmark",
+                "plain-wordmark",
+                "line-wordmark"
+              ],
+              "tags": [
+                "javascript",
+                "language"
+              ],
+              "color": "#5fa04e"
+            },
+            "request": {
+              "name": "nodejs",
+              "version": "original"
+            }
+          }`
         },
         {
           request: 'info?rust&v=p&c=blue&s=50',
           code: `
-            {
-              "project": {
-                "version": "latest",
-                "altnames": [
-                  "rustlang"
-                ],
-                "actualIconVersions": [
-                  "original",
-                  "line"
-                ],
-                "tags": [
-                  "programming",
-                  "language"
-                ],
-                "defaultColor": "#000"
-              },
-              "iconRequest": {
-                "name": "rust",
-                "version": "original",
-                "color": "#0000FF",
-                "theme": null,
-                "size": 50
-              }
-            }`
+          {
+            "project": {
+              "version": "latest",
+              "altnames": [
+                "rustlang"
+              ],
+              "iconVersions": [
+                "original",
+                "line"
+              ],
+              "tags": [
+                "programming",
+                "language"
+              ],
+              "color": "#000"
+            },
+            "request": {
+              "name": "rust",
+              "version": "original",
+              "color": "#0000FF",
+              "size": 50
+            }
+          }`
         }
       ]} />
       <p>

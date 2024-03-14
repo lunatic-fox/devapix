@@ -24,7 +24,7 @@ export default function Page() {
         Property value can be <Code ic='dev' /> or <Code ic='develop' /> to access the development branch and get early access to new icons or the project version number since version <Code ic='2.7' />. Versions before <Code ic='2.7' /> will not work because project compatibility.
       </p>
       <ReqResExample reqs={[
-        'chakraui&pv=develop',
+        'chakraui&pv=dev',
         'php&pv=2.7',
         'twitter',
         'twitter&project-version=2.15.1',

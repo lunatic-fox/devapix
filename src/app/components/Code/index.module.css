@@ -32,8 +32,13 @@
   white-space: pre-line;
 }
 
+.highlightWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 .highlightCode {
-  white-space: pre;
+  white-space: pre
 }
 
 .code img {
@@ -48,6 +53,7 @@
 }
 
 @media (max-width: 800px) {
+
   .code,
   .highlightCode {
     max-width: calc(100vw - 80px);
