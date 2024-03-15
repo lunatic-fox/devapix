@@ -6,12 +6,12 @@ export default function Page() {
   return (
     <Docs
       refs={{
-        previousDocHref: '/docs/getting-icons/size',
-        currentDocHref: '/docs/getting-icons/color',
-        nextDocHref: '/docs/getting-icons/theme'
+        previousDoc: { link: '/docs/getting-icons/size', label: 'Getting icons: Size' },
+        currentDoc: '/docs/getting-icons/color',
+        nextDoc: { link: '/docs/getting-icons/theme', label: 'Getting icons: Theme' }
       }}>
       <h2>
-        Getting Icons: Color
+        Getting icons: Color
       </h2>
       <p>
         <Code ic='color' /> is an optional property that can be specified by the key <Code ic='color' /> or <Code ic='c' />. Its value have to be a hexadecimal or CSS valid color.

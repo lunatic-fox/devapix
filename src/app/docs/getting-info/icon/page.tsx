@@ -6,12 +6,12 @@ export default function Page() {
   return (
     <Docs
       refs={{
-        previousDocHref: '/docs/getting-icons/theme',
-        currentDocHref: '/docs/getting-info/icon',
-        nextDocHref: '/docs/getting-info/tag'
+        previousDoc: { link: '/docs/getting-icons/theme', label: 'Getting icons: Theme' },
+        currentDoc: '/docs/getting-info/icon',
+        nextDoc: { link: '/docs/getting-info/tag', label: 'Getting info: Tag' }
       }}>
       <h2>
-        Getting Info: Icon
+        Getting info: Icon
       </h2>
       <p>
         It is possible to get information, based on <Code ic='devicon.json' /> file, about the icon via <Code ic='project' /> response property. Also check the request values through <Code ic='request' /> if the properties to modify the icon are passed.

@@ -6,12 +6,12 @@ export default function Page() {
   return (
     <Docs
       refs={{
-        previousDocHref: '/docs/getting-icons/version',
-        currentDocHref: '/docs/getting-icons/size',
-        nextDocHref: '/docs/getting-icons/color'
+        previousDoc: { link: '/docs/getting-icons/version', label: 'Getting icons: Version' },
+        currentDoc: '/docs/getting-icons/size',
+        nextDoc: { link: '/docs/getting-icons/color', label: 'Getting icons: Color' }
       }}>
       <h2>
-        Getting Icons: Size
+        Getting icons: Size
       </h2>
       <p>
         <Code ic='size' /> is an optional property that can be specified by the key <Code ic='size' /> or <Code ic='s' />. Its value have to be an <Code ic='integer' /> to change the icon size in pixels.

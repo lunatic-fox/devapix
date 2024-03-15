@@ -4,8 +4,8 @@ import Docs from '@/app/components/Docs'
 export default function Page() {
   return (
     <Docs refs={{
-      currentDocHref: '/docs/introduction',
-      nextDocHref: '/docs/getting-icons/icon'
+      currentDoc: '/docs/introduction',
+      nextDoc: { link: '/docs/getting-icons/icon', label: 'Getting icons: Icon' }
     }}>
       <h2>Introduction</h2>
       <p>

@@ -6,12 +6,12 @@ export default function Page() {
   return (
     <Docs
       refs={{
-        previousDocHref: '/docs/introduction',
-        currentDocHref: '/docs/getting-icons/icon',
-        nextDocHref: '/docs/getting-icons/project-version'
+        previousDoc: { link: '/docs/introduction', label: 'Introduction' },
+        currentDoc: '/docs/getting-icons/icon',
+        nextDoc: { link: '/docs/getting-icons/project-version', label: 'Getting icons: Project Version' }
       }}>
       <h2>
-        Getting Icons: Icon
+        Getting icons: Icon
       </h2>
       <p>
         <Code ic='icon' /> is a mandatory implicit property of the API request, when alone and if it is a valid technology name or alternative name, the request returns the default icon for the specified technology.

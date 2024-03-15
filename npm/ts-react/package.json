@@ -1,0 +1,8 @@
+{
+  "name": "@devapix/ts-react",
+  "version": "0.0.1",
+  "description": "TypeScript React component to request an icon of Devapix.",
+  "main": "index.tsx",
+  "author": "Devapix",
+  "license": "MIT"
+}

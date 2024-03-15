@@ -6,12 +6,12 @@ export default function Page() {
   return (
     <Docs
       refs={{
-        previousDocHref: '/docs/getting-icons/color',
-        currentDocHref: '/docs/getting-icons/theme',
-        nextDocHref: '/docs/getting-info/icon'
+        previousDoc: { link: '/docs/getting-icons/color', label: 'Getting icons: Color' },
+        currentDoc: '/docs/getting-icons/theme',
+        nextDoc: { link: '/docs/getting-info/icon', label: 'Getting info: Icon' }
       }}>
       <h2>
-        Getting Icons: Theme
+        Getting icons: Theme
       </h2>
       <p>
         <Code ic='theme' /> is an optional property that can be specified by the key <Code ic='theme' /> or <Code ic='t' />. Its values can be <Code ic='dark' /> or <Code ic='d' />, and <Code ic='light' /> or <Code ic='l' />. This property has priority over <Code ic='color' />, in other words, if both properties are present only <Code ic='theme' /> will work.

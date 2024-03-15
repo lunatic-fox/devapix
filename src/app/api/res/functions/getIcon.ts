@@ -108,6 +108,12 @@ export default async function getIcon(req: RequestObject) {
           convertArcs: true,
           floatPrecision: 2
         }
+      },
+      {
+        name: 'removeAttrs',
+        params: {
+          attrs: 'class'
+        }
       }
     ]
   }).data

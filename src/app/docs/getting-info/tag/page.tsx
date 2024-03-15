@@ -6,8 +6,9 @@ export default function Page() {
   return (
     <Docs
       refs={{
-        previousDocHref: '/docs/getting-info/icon',
-        currentDocHref: '/docs/getting-info/tag'
+        previousDoc: { link: '/docs/getting-info/icon', label: 'Getting info: Icon' },
+        currentDoc: '/docs/getting-info/tag',
+        nextDoc: { link: '/docs/ways-of-use/deviconjs', label: 'Ways of use: devicon.js' }
       }}>
       <h2>
         Getting Info: Tag
