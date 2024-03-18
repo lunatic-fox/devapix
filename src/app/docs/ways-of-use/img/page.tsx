@@ -9,7 +9,7 @@ export default function Page() {
       currentDoc: '/docs/ways-of-use/img',
       nextDoc: { link: '/docs/ways-of-use/nextjs-image', label: 'Ways of use: Next.js <Image>' }
     }}>
-      <h2>{`<img>}</h2>
+      <h2>{`<img>`}</h2>
       <p>
         This is the basic and more direct approach of how to use Devapix into your project. Let's take a look to an example inside a <Code ic='.html' /> file.
       </p>
