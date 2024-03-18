@@ -9,7 +9,7 @@ export default function Page() {
       currentDoc: '/docs/ways-of-use/nextjs-image',
       nextDoc: { link: '/docs/ways-of-use/deviconjs', label: 'Ways of use: devicon.js' }
     }}>
-      <h2>Next.js &lt;Image&gt;</h2>
+      <h2>{`Next.js <Image>`}</h2>
       <p>
         <Code ic='<Image>' /> is a particular element of Next.js framework that is very similar with the regular HTML <Code ic='<img>' /> element. However, it needs some configurations before work properly.
       </p>
