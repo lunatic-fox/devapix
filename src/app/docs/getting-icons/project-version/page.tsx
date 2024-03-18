@@ -21,7 +21,7 @@ export default function Page() {
         @[connector]?[ICON_NAME]&pv=[PROJECT_VERSION]
       `} />
       <p>
-        Property value can be <Code ic='dev' /> or <Code ic='develop' /> to access the development branch and get early access to new icons. Or, in order to get previous icon versions, the project version number since version <Code ic='2.7' />. Versions before <Code ic='2.7' /> will not work because Devicon project compatibility.
+        Property value can be <Code ic='dev' /> or <Code ic='develop' /> to access the development branch and get early access to new icons. Or, in order to get previous icon versions, the value can be the project version number since version <Code ic='2.7' />. Versions before <Code ic='2.7' /> will not work because Devicon project compatibility.
       </p>
       <ReqResExample reqs={[
         'chakraui&pv=dev',

@@ -1,8 +1,8 @@
 'use client'
-import styles from './index.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useId, useState } from 'react'
+import styles from './index.module.css'
 import 'highlight.js/styles/tokyo-night-dark.css'
 
 export default function Docs({ children, refs }: {
@@ -18,11 +18,7 @@ export default function Docs({ children, refs }: {
   const handleHeaderOptions = (ev: React.MouseEvent) => {
     setHeaderOptions(!headerOptions)
     const sidebarElement = document.getElementById(sidebarId) as HTMLElement
-    if (headerOptions) {
-      sidebarElement.style.display = 'none'
-    } else {
-      sidebarElement.style.display = 'block'
-    }
+    sidebarElement.style.display = headerOptions ? 'none' : 'block'
   }
 
   const highlight = (href: string) => refs.currentDoc === href ? styles.sidebarOn : ''
@@ -114,8 +110,8 @@ export default function Docs({ children, refs }: {
             <summary>Ways of use</summary>
             {
               [
-                '<img/>',
-                'Next.js <Image/>',
+                '<img>',
+                'Next.js <Image>',
                 'devicon.js',
                 '@devapix/react',
                 '@devapix/ts-react'
