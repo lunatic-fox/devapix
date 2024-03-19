@@ -5,7 +5,10 @@ import ReqResExample from '@/app/components/ReqResExample'
 export default function Page() {
   return (
     <Docs refs={{
-      previousDoc: { link: '/docs/ways-of-use/devapixreact', label: 'Ways of use: @devapix/react' },
+      previousDoc: {
+        link: '/docs/ways-of-use/devapixreact',
+        label: 'Ways of use: @devapix/react'
+      },
       currentDoc: '/docs/ways-of-use/devapixtsreact'
     }}>
       <h2>@devapix/ts-react</h2>

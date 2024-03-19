@@ -5,9 +5,15 @@ import ReqResExample from '@/app/components/ReqResExample'
 export default function Page() {
   return (
     <Docs refs={{
-      previousDoc: { link: '/docs/ways-of-use/nextjs-image', label: 'Ways of use: Next.js <Image>' },
+      previousDoc: {
+        link: '/docs/ways-of-use/nextjs-image',
+        label: 'Ways of use: Next.js <Image>'
+      },
       currentDoc: '/docs/ways-of-use/deviconjs',
-      nextDoc: { link: '/docs/ways-of-use/devapixreact', label: 'Ways of use: @devapix/react' }
+      nextDoc: {
+        link: '/docs/ways-of-use/devapixreact',
+        label: 'Ways of use: @devapix/react'
+      }
     }}>
       <h2>devicon.js</h2>
       <p>

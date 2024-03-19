@@ -6,9 +6,15 @@ export default function Page() {
   return (
     <Docs
       refs={{
-        previousDoc: { link: '/docs/getting-info/icon', label: 'Getting info: Icon' },
+        previousDoc: {
+          link: '/docs/getting-info/icon',
+          label: 'Getting info: Icon'
+        },
         currentDoc: '/docs/getting-info/tag',
-        nextDoc: { link: '/docs/ways-of-use/img', label: 'Ways of use: <img>' }
+        nextDoc: {
+          link: '/docs/ways-of-use/img',
+          label: 'Ways of use: <img>'
+        }
       }}>
       <h2>
         Getting Info: Tag
@@ -93,7 +99,7 @@ export default function Page() {
             }
           `
         }
-    ]} />
+      ]} />
     </Docs>
   )
 }

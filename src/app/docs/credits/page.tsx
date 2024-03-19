@@ -1,6 +1,7 @@
-import Code from '@/app/components/Code'
 import Docs from '@/app/components/Docs'
+import Image from 'next/image'
 import Link from 'next/link'
+import styles from './page.module.css'
 
 export default function Page() {
   return (
@@ -15,6 +16,28 @@ export default function Page() {
       <p>
         Thank you all people of Devicon community. ❤️
       </p>
+      <div className={styles.logoBox}>
+        <Image
+          src='/api?devicon'
+          width={64}
+          height={64}
+          alt='Devicon logo'/>
+        <Image
+          src='/api?vercel&t=d'
+          width={64}
+          height={64}
+          alt='Vercel logo'/>
+        <Image
+          src='/api?nextjs&t=d'
+          width={64}
+          height={64}
+          alt='Next.js logo'/>
+        <Image
+          src='/img/logo.svg'
+          width={64}
+          height={64}
+          alt='Devapix logo'/>
+      </div>
     </Docs>
   )
 }

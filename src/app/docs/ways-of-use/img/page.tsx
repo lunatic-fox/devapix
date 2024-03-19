@@ -5,9 +5,15 @@ import ReqResExample from '@/app/components/ReqResExample'
 export default function Page() {
   return (
     <Docs refs={{
-      previousDoc: { link: '/docs/getting-info/tag', label: 'Getting info: Tag' },
+      previousDoc: {
+        link: '/docs/getting-info/tag',
+        label: 'Getting info: Tag'
+      },
       currentDoc: '/docs/ways-of-use/img',
-      nextDoc: { link: '/docs/ways-of-use/nextjs-image', label: 'Ways of use: Next.js <Image>' }
+      nextDoc: {
+        link: '/docs/ways-of-use/nextjs-image',
+        label: 'Ways of use: Next.js <Image>'
+      }
     }}>
       <h2>{`<img>`}</h2>
       <p>

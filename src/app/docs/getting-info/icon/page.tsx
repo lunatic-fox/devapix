@@ -6,9 +6,15 @@ export default function Page() {
   return (
     <Docs
       refs={{
-        previousDoc: { link: '/docs/getting-icons/theme', label: 'Getting icons: Theme' },
+        previousDoc: {
+          link: '/docs/getting-icons/theme',
+          label: 'Getting icons: Theme'
+        },
         currentDoc: '/docs/getting-info/icon',
-        nextDoc: { link: '/docs/getting-info/tag', label: 'Getting info: Tag' }
+        nextDoc: {
+          link: '/docs/getting-info/tag',
+          label: 'Getting info: Tag'
+        }
       }}>
       <h2>
         Getting info: Icon

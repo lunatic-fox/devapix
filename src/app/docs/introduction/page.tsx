@@ -5,7 +5,10 @@ export default function Page() {
   return (
     <Docs refs={{
       currentDoc: '/docs/introduction',
-      nextDoc: { link: '/docs/getting-icons/icon', label: 'Getting icons: Icon' }
+      nextDoc: {
+        link: '/docs/getting-icons/icon',
+        label: 'Getting icons: Icon'
+      }
     }}>
       <h2>Introduction</h2>
       <p>
