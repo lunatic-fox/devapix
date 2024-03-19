@@ -6,8 +6,15 @@ export default function Page() {
   return (
     <Docs
       refs={{
-        previousDocHref: '/docs/getting-info/icon',
-        currentDocHref: '/docs/getting-info/tag'
+        previousDoc: {
+          link: '/docs/getting-info/icon',
+          label: 'Getting info: Icon'
+        },
+        currentDoc: '/docs/getting-info/tag',
+        nextDoc: {
+          link: '/docs/ways-of-use/img',
+          label: 'Ways of use: <img>'
+        }
       }}>
       <h2>
         Getting Info: Tag
@@ -16,7 +23,6 @@ export default function Page() {
         <Code ic='tag' /> property allows access to a list of icon names that have the same searched tag value in their <Code ic='tags' /> array of <Code ic='devicon.json' /> file.
       </p>
       <Code c='@[connector]/info?tag=[TAG]' />
-
       <ReqResExample reqs={[
         {
           request: 'info?tag=language',

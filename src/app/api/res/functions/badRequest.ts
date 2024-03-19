@@ -1,37 +1,45 @@
 const badRequest: { [k: string]: string } = {
   noIcon: `
   Problem: 
-    Request input has no 'icon-name'.
+    Request has no 'ICON_NAME'.
   
   Context:
-    This request has 'icon-name' as a mandatory implicity
+    This request has "icon" (ICON_NAME) as a mandatory implicity
     property.
 
   Fixes:
-    Try again using the following patterns:
-      /api/[icon name]       -> Get SVG icon
-      /api/info/[icon name]  -> Get icon info
+    Please try again using one of the following patterns:
+      /api?[ICON_NAME]       -> Get SVG icon.
+      /api/info?[ICON_NAME]  -> Get icon info.
 
     Examples:
-      /api/csharp       -> Get SVG 'csharp' icon,
-      /api/info/csharp  -> Get 'csharp' icon info`,
+      /api?csharp       -> Get SVG 'csharp' icon.
+      /api/info?csharp  -> Get 'csharp' icon info.
+      
+  Documentation:
+    https://devapix.vercel.app/docs/introduction`,
 
   wrongWay: `
   Problem: 
-    API wrong path request.
+    Wrong path request.
 
   Context:
-    This request does not return an icon, instead it returns
-    a list of icon names that have the searched tag.
+    "tag" is not a property of this request query ("/api?"), 
+    however it is a valid property of "/api/info?" request,
+    which returns a list of technology names that have the
+    searched "tag" inside their "tags" array from 
+    "devicon.json".
            
   Fix:
-    Try again using the following pattern:
-      /api/info/tag:[search tag]
+    Please try again using the following pattern:
+      /api/info?tag=[SEARCH_TAG]
     
     Examples:
-      /api/info/tag:programming  -> Get icon names that have
+      /api/info?tag=programming  -> Get icon names that have
                                     'programming' tag in
-                                    their tags.`
+                                    their tags.
+  Documentation:
+    https://devapix.vercel.app/docs/getting-info/tag`
 }
 
 Object.entries(badRequest).forEach(([k, v]) => {

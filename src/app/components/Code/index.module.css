@@ -2,13 +2,12 @@
 .inlineCode,
 .highlightCode {
   border-radius: 5px;
-  background: #1f1f1f;
+  background: #282c34;
 }
 
 .code,
 .highlightCode {
-  max-width: calc(100vw - 272px);
-  --size: 14px;
+  --size: 16px;
   padding: 10px;
   margin: 0 5px;
   font-size: var(--size);
@@ -32,8 +31,13 @@
   white-space: pre-line;
 }
 
+.highlightWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 .highlightCode {
-  white-space: pre;
+  white-space: pre
 }
 
 .code img {

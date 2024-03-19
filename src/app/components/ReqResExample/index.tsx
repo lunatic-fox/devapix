@@ -3,9 +3,9 @@ import Code from '../Code'
 import styles from './index.module.css'
 
 const API_URL = 'https://devapix.vercel.app/api'
-export default function ReqResExample({ reqs, exampleTitle }: {
+export default function ReqResExample({ reqs, title }: {
   reqs: string[] | { request: string, code: string }[]
-  exampleTitle?: string
+  title?: string | boolean
 }) {
   let examples = reqs.map((req, i) => {
     const icon = { name: '', size: 128 }
@@ -17,7 +17,7 @@ export default function ReqResExample({ reqs, exampleTitle }: {
 
       requestProps.forEach(e => {
         if (e.length === 1) icon.name = e[0]
-        if (e[0] === 's' && !isNaN(+e[1])) icon.size = +e[1]
+        if (e[0].match(/s(ize)?/) && !isNaN(+e[1])) icon.size = +e[1]
       })
 
       return (
@@ -57,8 +57,13 @@ export default function ReqResExample({ reqs, exampleTitle }: {
 
   return (
     <section>
-      <br />
-      <h4>{exampleTitle ? exampleTitle : `Example${examples.length > 1 ? 's' : ''}`}</h4>
+      {
+        title === false ? ''
+        : <>
+            <br />
+            <h4>{title ? title : `Example${examples.length > 1 ? 's' : ''}`}</h4>
+          </>
+      }
       {examples}
     </section>
   )
