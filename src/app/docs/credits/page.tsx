@@ -18,17 +18,17 @@ export default function Page() {
       </p>
       <div className={styles.logoBox}>
         <Image
-          src='/api?devicon'
+          src='http://devapix.vercel.app/api?devicon'
           width={64}
           height={64}
           alt='Devicon logo'/>
         <Image
-          src='/api?vercel&t=d'
+          src='http://devapix.vercel.app/api?vercel&t=d'
           width={64}
           height={64}
           alt='Vercel logo'/>
         <Image
-          src='/api?nextjs&t=d'
+          src='http://devapix.vercel.app/api?nextjs&t=d'
           width={64}
           height={64}
           alt='Next.js logo'/>
