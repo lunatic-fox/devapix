@@ -9,8 +9,8 @@ export default function Docs({ children, refs }: {
   children: React.ReactNode
   refs: {
     currentDoc: string
-    previousDoc?: {link: string, label: string}
-    nextDoc?: {link: string, label: string}
+    previousDoc?: { link: string, label: string }
+    nextDoc?: { link: string, label: string }
   }
 }) {
   const sidebarId = useId()
@@ -33,7 +33,7 @@ export default function Docs({ children, refs }: {
             width={32}
             height={32}
             alt='Devapix logo'
-            priority={true}/>
+            priority={true} />
         </Link>
         <section className={styles.headerDescription}>Docs</section>
         <section
@@ -59,79 +59,80 @@ export default function Docs({ children, refs }: {
       </header>
       <section className={styles.bigWrapper}>
         <aside id={sidebarId} className={styles.sidebar}>
-          <Link href='/docs/introduction'>
-            <section className={highlight('/docs/introduction')}>Introduction</section>
-          </Link>
-          <details open={
-            refs.currentDoc.match(RegExp('^/docs/getting-icons')) ? true : false
-          }>
-            <summary>Getting icons</summary>
-            {
-              [
-                'icon',
-                'project-version',
-                'version',
-                'size',
-                'color',
-                'theme'
-              ].map((e, i) => {
-                const href = `/docs/getting-icons/${e}`
-                return (
-                  <Link key={i} href={href}>
-                    <section className={highlight(href)}>{rmHyphen(e)}</section>
-                  </Link>
-                )
-              })
-            }
-          </details>
+          <div className={styles.sidebarInfo}>
+            <Link href='/docs/introduction'>
+              <section className={highlight('/docs/introduction')}>Introduction</section>
+            </Link>
+            <details open={
+              refs.currentDoc.match(RegExp('^/docs/getting-icons')) ? true : false
+            }>
+              <summary>Getting icons</summary>
+              {
+                [
+                  'icon',
+                  'project-version',
+                  'version',
+                  'size',
+                  'color',
+                  'theme'
+                ].map((e, i) => {
+                  const href = `/docs/getting-icons/${e}`
+                  return (
+                    <Link key={i} href={href}>
+                      <section className={highlight(href)}>{rmHyphen(e)}</section>
+                    </Link>
+                  )
+                })
+              }
+            </details>
 
-          <details open={
-            refs.currentDoc.match(RegExp('^/docs/getting-info')) ? true : false
-          }>
-            <summary>Getting info</summary>
-            {
-              [
-                'icon',
-                'tag'
-              ].map((e, i) => {
-                const href = `/docs/getting-info/${e}`
-                return (
-                  <Link key={i} href={href}>
-                    <section className={highlight(href)}>{rmHyphen(e)}</section>
-                  </Link>
-                )
-              })
-            }
-          </details>
+            <details open={
+              refs.currentDoc.match(RegExp('^/docs/getting-info')) ? true : false
+            }>
+              <summary>Getting info</summary>
+              {
+                [
+                  'icon',
+                  'tag'
+                ].map((e, i) => {
+                  const href = `/docs/getting-info/${e}`
+                  return (
+                    <Link key={i} href={href}>
+                      <section className={highlight(href)}>{rmHyphen(e)}</section>
+                    </Link>
+                  )
+                })
+              }
+            </details>
 
-          <details open={
-            refs.currentDoc.match(RegExp('^/docs/ways-of-use')) ? true : false
-          }>
-            <summary>Ways of use</summary>
-            {
-              [
-                '<img>',
-                'Next.js <Image>',
-                'devicon.js',
-                '@devapix/react',
-                '@devapix/ts-react'
-              ].map((e, i) => {
-                const href = `/docs/ways-of-use/${
-                  e.replace(/[<>.@/-]/g, '')
-                  .replace(/\s/g, '-')
-                  .toLowerCase()
-                }`
-                return (
-                  <Link key={i} href={href}>
-                    <section className={highlight(href)}>{e}</section>
-                  </Link>
-                )
-              })
-            }
-          </details>
-          <Link href='/docs/credits'>
-            <section className={highlight('/docs/credits')}>Credits</section>
-          </Link>
+            <details open={
+              refs.currentDoc.match(RegExp('^/docs/ways-of-use')) ? true : false
+            }>
+              <summary>Ways of use</summary>
+              {
+                [
+                  '<img>',
+                  'Next.js <Image>',
+                  'devicon.js',
+                  '@devapix/react',
+                  '@devapix/ts-react'
+                ].map((e, i) => {
+                  const href = `/docs/ways-of-use/${e.replace(/[<>.@/-]/g, '')
+                      .replace(/\s/g, '-')
+                      .toLowerCase()
+                    }`
+                  return (
+                    <Link key={i} href={href}>
+                      <section className={highlight(href)}>{e}</section>
+                    </Link>
+                  )
+                })
+              }
+            </details>
+            <Link href='/docs/credits'>
+              <section className={highlight('/docs/credits')}>Credits</section>
+            </Link>
+          </div>
         </aside>
         <section className={styles.articleWrapper}>
           <article className={styles.article}>{children}</article>
