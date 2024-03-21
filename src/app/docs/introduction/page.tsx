@@ -20,9 +20,6 @@ export default function Page() {
       <p>
         This API uses only GET method and the base URL is <Code ic={'https://devapix.vercel.app/api'} /> that will be represented through this documentation as <Code ic={'@[connector]'} /> symbol.
       </p>
-      <p>
-        Double click any code block to copy to clipboard.
-      </p>
     </Docs>
   )
 }

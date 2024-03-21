@@ -20,6 +20,13 @@
   border-radius: 100px;
 }
 
+.code + h6,
+.highlightCode + h6 {
+  color: var(--g4d);
+  text-align: right;
+  margin-right: 10px;
+}
+
 .copied {
   position: absolute;
   top: 0;

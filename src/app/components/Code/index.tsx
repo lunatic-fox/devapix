@@ -61,19 +61,23 @@ export default function Code({ c, ic, h }: { c?: string, ic?: string, h?: string
           onDoubleClick={(ev) => handleCopy(ev)}
           className={`${styles.highlightCode} ${sometypeMono.className}`}
           dangerouslySetInnerHTML={{ __html: icons(c) }}></code>
+        <h6>Double click to copy</h6>
       </section>
     : c ?
-      <code
-        onDoubleClick={(ev) => handleCopy(ev)}
-        className={`${styles.code} ${sometypeMono.className}`}
-        dangerouslySetInnerHTML={{
-          __html: icons(c)
-            .split('\n')
-            .map(e => `<span>${e}</span>`)
-            .filter(e => e)
-            .join('')
-            .replace(/<span><\/span>/g, '')
-        }}></code>
+      <section>
+        <code
+          onDoubleClick={(ev) => handleCopy(ev)}
+          className={`${styles.code} ${sometypeMono.className}`}
+          dangerouslySetInnerHTML={{
+            __html: icons(c)
+              .split('\n')
+              .map(e => `<span>${e}</span>`)
+              .filter(e => e)
+              .join('')
+              .replace(/<span><\/span>/g, '')
+          }}></code>
+        <h6>Double click to copy</h6>
+      </section>
     : ic ?
       <code
         className={`${styles.inlineCode} ${sometypeMono.className}`}
