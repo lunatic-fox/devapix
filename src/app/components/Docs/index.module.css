@@ -1,7 +1,7 @@
 .main {
   width: 100vw;
   min-height: 100vh;
-  background: #141414;
+  background: var(--g14);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,7 +12,7 @@
   display: grid;
   grid-template-columns: 32px auto;
   padding: 15px;
-  background: #111;
+  background: var(--g1);
   position: fixed;
   z-index: 1;
 }
@@ -61,17 +61,17 @@
 }
 
 .articleWrapper a {
-  color: #6495ed
+  color: var(--link)
 }
 
 .articleWrapper a:hover {
-  color: #bf64ed
+  color: var(--accent-hover)
 }
 
 .sidebar {
   min-width: 250px;
   text-wrap: nowrap;
-  background: #1f1f1f;
+  background: var(--g1f);
 }
 
 .sidebarInfo {
@@ -82,18 +82,18 @@
 .sidebar details>summary,
 .sidebar section {
   font-size: 18px;
-  background: #1f1f1f;
+  background: var(--g1f);
   padding: 10px 30px;
   cursor: pointer;
 }
 
 .sidebar details>summary:hover,
 .sidebar section:hover {
-  background: #2c2c2c;
+  background: var(--g2c);
 }
 
 .sidebarOn {
-  background: #a200ff !important
+  background: var(--accent-sidebar) !important
 }
 
 .sidebar details section {
@@ -118,7 +118,7 @@
 }
 
 .article hr {
-  background: #3a3a3a;
+  background: var(--g3a);
   border: none;
   height: 1px;
   margin: 20px 0;
@@ -127,7 +127,7 @@
 .article h2,
 .article h3,
 .article h5 {
-  color: #d48aff
+  color: var(--accent)
 }
 
 .article h3 {
@@ -139,7 +139,7 @@
   padding: 2px 10px;
   font-style: italic;
   font-weight: 400;
-  color: #a2a2a2;
+  color: var(--gc);
   font-size: 14px;
 }
 
@@ -156,7 +156,7 @@
   font-family: inherit;
   max-width: 300px;
   border: none;
-  background: #7d7d7d;
+  background: var(--g4d);
   color: #fff;
   height: fit-content;
   padding: 10px 15px;
@@ -166,7 +166,7 @@
 }
 
 .pages button:hover {
-  background: #d48aff;
+  background: var(--accent);
 }
 
 .pages button img {
@@ -175,7 +175,6 @@
 
 @media (max-width: 1250px) {
   .header {
-    /* position: relative; */
     grid-template-columns: 24px auto max-content;
     padding: 0;
   }

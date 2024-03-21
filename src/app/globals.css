@@ -1,17 +1,36 @@
+:root {
+  --g1: #111;
+  --g14: #141414;
+  --g1f: #1f1f1f;
+  --g2c: #2c2c2c;
+  --g3a: #3a3a3a;
+  --g4d: #4d4d4d;
+  --gc: #ccc;
+  --accent: #d48aff;
+  --accent-hover: #b053df;
+  --accent-sidebar: #a200ff;
+  --link: #6495ed;
+  --code-background: #282c34;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
+*::selection {
+  background: var(--accent-hover);
+}
+
 *::-webkit-scrollbar {
   width: 10px;
-  background: #3a3a3a;
+  background: var(--g3a);
   border-radius: 0 0 5px 5px;
 }
 
 *::-webkit-scrollbar-thumb {
-  background: #4d4d4d;
+  background:  var(--g4d);
   border-radius: 5px;
 }
 

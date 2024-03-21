@@ -1,7 +1,12 @@
+'use client'
+
 import literalStringTab from '@/app/functions/literalStringTab'
 import styles from './index.module.css'
 import { Sometype_Mono } from 'next/font/google'
 import hljs from 'highlight.js'
+import { useEffect, useState } from 'react'
+
+
 
 const sometypeMono = Sometype_Mono({ subsets: ['latin'] })
 
@@ -21,15 +26,45 @@ export default function Code({ c, ic, h }: { c?: string, ic?: string, h?: string
   if (c && h)
     c = hljs.highlight(c, { language: h }).value
 
+  useEffect(() => {
+    [
+      ...document.getElementsByClassName(styles.code),
+      ...document.getElementsByClassName(styles.highlightCode)
+    ].forEach(e => {
+      const wrapper = e.clientWidth
+      const codeWidth = Math.max(
+        ...[...e.childNodes].map(f => f.textContent?.split('\n'))
+        .flat()
+        .map(f => ((f?.length ?? 0) * 9.28) + 20)
+      )
+      if (codeWidth > wrapper)
+        (e as HTMLElement).style.overflowX = 'scroll'
+    })
+  }, [])
+
+  const handleCopy = (ev: React.MouseEvent) => {
+    const mainNode = ev.currentTarget as HTMLElement
+    mainNode.style.position = 'relative'
+    navigator.clipboard.writeText(mainNode.textContent ?? '')
+
+    const copied = document.createElement('section')
+    copied.className = styles.copied
+    copied.textContent = 'Copied to clipboard!'
+    mainNode.append(copied)
+    setTimeout(() => mainNode.removeChild(copied), 1e3)
+  }
+
   return (
     h && c ?
       <section className={styles.highlightWrapper}>
         <code
+          onDoubleClick={(ev) => handleCopy(ev)}
           className={`${styles.highlightCode} ${sometypeMono.className}`}
           dangerouslySetInnerHTML={{ __html: icons(c) }}></code>
       </section>
     : c ?
       <code
+        onDoubleClick={(ev) => handleCopy(ev)}
         className={`${styles.code} ${sometypeMono.className}`}
         dangerouslySetInnerHTML={{
           __html: icons(c)

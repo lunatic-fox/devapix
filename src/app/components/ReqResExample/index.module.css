@@ -9,11 +9,11 @@
   justify-content: center;
   padding: 5px 0;
   margin: 0 5px;
-  background: #282c34;
+  background: var(--code-background);
   border-radius: 5px;
 }
 
 .line {
-  background: #3a3a3a;
+  background: var(--g3a);
   height: 1px;
 }

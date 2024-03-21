@@ -1,7 +1,7 @@
 .main {
   width: 100vw;
   min-height: 100vh;
-  background: #141414;
+  background: var(--g14);
   display: grid;
   grid-template-rows: min-content auto;
 }
@@ -54,11 +54,11 @@
 }
 
 .card:hover {
-  background: #2c2c2c;
+  background: var(--g2c);
 }
 
 .cardTitle {
-  color: #d48aff;
+  color: var(--accent);
   margin-left: 10px;
   font-size: 18px;
 }
@@ -66,7 +66,7 @@
 .cardDescription {
   padding: 10px;
   padding-right: 0;
-  color: #ccc;
+  color: var(--gc);
 }
 
 .card img {
