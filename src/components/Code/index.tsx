@@ -1,6 +1,6 @@
 'use client'
 
-import literalStringTab from '@/app/functions/literalStringTab'
+import literalStringTab from '@/functions/literalStringTab'
 import styles from './index.module.css'
 import { Sometype_Mono } from 'next/font/google'
 import hljs from 'highlight.js'

@@ -19,7 +19,7 @@ export default function requestObject(q: URLSearchParams) {
     // Version
     if (k.match(/^v(ersion)?$/) && v.match(/^(o(riginal)?|p(lain)?|l(ine)?)(w|-wordmark)?$/)) {
       const fullName = v.split('-').map(e => e[0])
-      resObject.v = fullName.length === 2 ? fullName.join('') : v
+      resObject.v = fullName.length === 2 ? fullName.join('') : v[0]
     }
 
     // Color

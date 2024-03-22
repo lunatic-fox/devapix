@@ -1,4 +1,4 @@
-import Docs from '@/app/components/Docs'
+import Docs from '@/components/Docs'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from './page.module.css'
