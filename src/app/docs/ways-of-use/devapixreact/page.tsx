@@ -1,6 +1,6 @@
-import Code from '@/app/components/Code'
-import Docs from '@/app/components/Docs'
-import ReqResExample from '@/app/components/ReqResExample'
+import Code from '@/components/Code'
+import Docs from '@/components/Docs'
+import ReqResExample from '@/components/ReqResExample'
 
 export default function Page() {
   return (

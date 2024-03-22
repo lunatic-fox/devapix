@@ -1,5 +1,5 @@
-import Code from '@/app/components/Code'
-import Docs from '@/app/components/Docs'
+import Code from '@/components/Code'
+import Docs from '@/components/Docs'
 
 export default function Page() {
   return (
