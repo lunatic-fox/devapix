@@ -1,0 +1,123 @@
+.previewBigWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100vmin;
+  padding: 20px;
+}
+.previewWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview,
+.lChessBtn,
+.dChessBtn,
+.dchess {
+  --cb: #1f1f1f;
+  --cw: #373737;
+}
+
+.preview,
+.lChessBtn,
+.dChessBtn {
+  --cs: 10px;
+  background-image: 
+    repeating-linear-gradient(
+      45deg, 
+      var(--cw) 25%, 
+      transparent 25%, 
+      transparent 75%, 
+      var(--cw) 75%,
+      var(--cw)
+    ), 
+    repeating-linear-gradient( 
+      45deg, 
+      var(--cw) 25%, 
+      var(--cb) 25%, 
+      var(--cb) 75%, 
+      var(--cw) 75%,
+      var(--cw)
+    );
+
+  background-position: 
+    0 0, 
+    var(--cs) var(--cs);
+  
+  background-size: 
+    calc(2 * var(--cs)) 
+    calc(2 * var(--cs));
+}
+
+.preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  width: fit-content;
+  max-width: 138px;
+  border-radius: 5px;
+}
+.codesWrapper h4 {
+  margin-left: 10px;
+}
+
+.chessOptWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.lChessBtn,
+.dChessBtn,
+.wChessBtn,
+.bChessBtn,
+.cChessBtn .mask,
+.cChessBtn input[type=color] {
+  border: 2px solid var(--g2c);
+  margin: 0 5px;
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+}
+
+.lchess,
+.lChessBtn {
+  --cb: #acacac !important;
+  --cw: #d6d6d6 !important;
+}
+
+.bChessBtn {
+  background: #000
+}
+
+.wChessBtn {
+  background: #fff
+}
+
+.cChessBtn {
+  position: relative;
+}
+.mask {
+  position: absolute;
+  background: conic-gradient(
+    red,
+    purple,
+    indigo,
+    blue,
+    cyan,
+    turquoise,
+    lime,
+    yellow,
+    gold,
+    orange,
+    orangered,
+    red
+  );
+}
+
+.preview img {
+  max-width: calc(100vmin - 40px);
+  height: 100%;
+}

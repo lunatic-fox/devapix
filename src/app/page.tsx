@@ -34,7 +34,7 @@ export default function Home() {
           </section>
         </Link>
 
-        <Link href='/docs/introduction'>
+        <Link href='/docs'>
           <section className={styles.card}>
             <Image
               src='/img/icon/docs.svg'
