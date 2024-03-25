@@ -1,13 +1,9 @@
 'use client'
-
 import literalStringTab from '@/functions/literalStringTab'
 import styles from './index.module.css'
-import { Sometype_Mono } from 'next/font/google'
 import hljs from 'highlight.js'
 import { useEffect } from 'react'
 import 'highlight.js/styles/tokyo-night-dark.css'
-
-const sometypeMono = Sometype_Mono({ subsets: ['latin'] })
 
 function icons(str: string) {
   return str
@@ -63,7 +59,7 @@ export default function Code({ c, ic, h, style }: {
       <section className={styles.highlightWrapper}>
         <code
           onDoubleClick={(ev) => handleCopy(ev)}
-          className={`${styles.highlightCode} ${sometypeMono.className}`}
+          className={styles.highlightCode}
           style={style ? style : {}}
           dangerouslySetInnerHTML={{ __html: icons(c) }}></code>
         <h6>Double click to copy</h6>
@@ -72,7 +68,7 @@ export default function Code({ c, ic, h, style }: {
       <section>
         <code
           onDoubleClick={(ev) => handleCopy(ev)}
-          className={`${styles.code} ${sometypeMono.className}`}
+          className={styles.code}
           style={style ? style : {}}
           dangerouslySetInnerHTML={{
             __html: icons(c)
@@ -86,7 +82,7 @@ export default function Code({ c, ic, h, style }: {
       </section>
     : ic ?
       <code
-        className={`${styles.inlineCode} ${sometypeMono.className}`}
+        className={styles.inlineCode}
         dangerouslySetInnerHTML={{
           __html: icons(ic.split('\n')
             .map(e => e.trim())

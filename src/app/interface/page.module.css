@@ -35,41 +35,39 @@
 }
 
 .bigWrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 42ch auto;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: center; */
   font-size: 16px;
 }
 
-.card {
-  position: relative;
+.formWrapper {
   display: flex;
-  align-items: center;
-  max-width: 400px;
-  margin: 10px;
-  padding: 10px;
-  border-radius: 5px;
-  background: #1f1f1f;
+  flex-direction: column;
+  /* background: teal; */
 }
 
-.card:hover {
-  background: var(--g2c);
-}
+.formInput {
+  font-family: 'Fira Mono', monospace;
 
-.cardTitle {
-  color: var(--accent);
-  margin-left: 10px;
+  border: none;
+  outline: none;
   font-size: 18px;
-}
-
-.cardDescription {
-  padding: 10px;
-  padding-right: 0;
+  text-transform: uppercase;
+  border-radius: 5px;
+  margin: 5px;
   color: var(--gc);
 }
 
-.card img {
-  margin-right: 10px;
+.formInput[type=text] {
+  background: var(--code-background);
+  padding: 0 1ch;
 }
 
+.formInput[type=button] {
+  background: var(--code-background);
+  padding: 0 1ch;
+}

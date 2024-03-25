@@ -19,6 +19,7 @@ export default function Preview({ inputsIds }: { inputsIds: GKSObj }) {
 
   const [req, setReq] = useState({} as RequestObject)
   const [themed, setThemed] = useState(false)
+  const [bgTheme, setBgTheme] = useState('dchess')
   const reqObj: RequestObject = {}
 
   useEffect(() => {
@@ -32,7 +33,11 @@ export default function Preview({ inputsIds }: { inputsIds: GKSObj }) {
       submitBtn
     ] = [...Object.values(inputsIds)].map(id => document.getElementById(id) as HTMLInputElement)
 
-    theme.onclick = () => setThemed(!themed)
+    theme.onclick = () => {
+      setThemed(!themed)
+      setBgTheme(!themed ? 'linear-gradient(-45deg, #fff 50%, #000 50%)' : 'dchess')
+      theme.style.background = themed ? '#282c34' : '#b053df'
+    }
 
     submitBtn.onclick = () => {
       reqObj.i = icon.value
@@ -48,7 +53,7 @@ export default function Preview({ inputsIds }: { inputsIds: GKSObj }) {
     }
   }, [req, themed])
 
-  const [bgTheme, setBgTheme] = useState('dchess')
+
 
   useEffect(() => {
     const [lc, dc, wc, bc, cp] = [lcid, dcid, wcid, bcid, cpid].map(id => document.getElementById(id) as HTMLInputElement)
@@ -100,19 +105,28 @@ export default function Preview({ inputsIds }: { inputsIds: GKSObj }) {
         </section>
         <section
           className={`${styles.preview} ${bgTheme.match(/^(l|d)chess$/) ? styles[bgTheme] : ''}`}
-          style={bgTheme.match(/#[a-f0-9]{6}/) ? { background: bgTheme } : {}}>
+          style={bgTheme.match(/^#[a-f0-9]{6}|linear.+/) ? { background: bgTheme } : {}}>
           {
             req.i ?
-              <Image
-                src={`https://devapix.vercel.app/api?${req.i}${['pv', 'v', 'c', 's'].map(k => {
-                  const r = req as GKSObj
-                  return r[k] && `&${k}=${r[k].replace('#', '')}`
-                }).join('')
-                  }`}
-                width={128}
-                height={128}
-                alt='preview'
-                priority={true} />
+              req.t ?
+                <section className={styles.themedWrapper}>
+                  <div className={styles.themedLight} style={{
+                    backgroundImage: `url(https://devapix.vercel.app/api?${aURI}&t=l)`
+                  }}></div>
+                  <div className={styles.themedDark} style={{
+                    backgroundImage: `url(https://devapix.vercel.app/api?${aURI}&t=d)`
+                  }}></div>
+                </section>
+                : <Image
+                  src={`https://devapix.vercel.app/api?${req.i}${['pv', 'v', 'c', 's'].map(k => {
+                    const r = req as GKSObj
+                    return r[k] && `&${k}=${r[k].replace('#', '')}`
+                  }).join('')
+                    }`}
+                  width={128}
+                  height={128}
+                  alt='preview'
+                  priority={true} />
               : <section style={{
                 width: 128,
                 height: 128
@@ -124,24 +138,43 @@ export default function Preview({ inputsIds }: { inputsIds: GKSObj }) {
         req.i ?
           <div className={styles.codesWrapper}>
             <h2>Codes</h2>
-            <h4>Link</h4>
-            <Code c={`https://devapix.vercel.app/api?${aURI}`} />
-            <h4>Markdown</h4>
-            <Code
-              h='markdown'
-              c={`![${req.i ?? ''}](https://devapix.vercel.app/api?${aURI})`} />
-            <h4>HTML</h4>
-            <Code
-              h='html'
-              c={`
-            <img
-              src="https://devapix.vercel.app/api?${aURI}"
-              title"${req.i ?? ''}"
-              alt="${req.i ?? ''}"/>`} />
             {
               req.t ?
                 <div>
-                  <h4>GitHub themed Markdown</h4>
+                  <h4>Links</h4>
+                  <Code c={`
+                    https://devapix.vercel.app/api?${aURI}&t=d
+                    https://devapix.vercel.app/api?${aURI}&t=l
+                  `} />
+                </div>
+                : <div>
+                  <h4>Link</h4>
+                  <Code c={`https://devapix.vercel.app/api?${aURI}`} />
+                </div>
+            }
+            {
+              !req.t ?
+                <div>
+                  <h4>Markdown</h4>
+                  <Code
+                    h='markdown'
+                    c={`![${req.i ?? ''}](https://devapix.vercel.app/api?${aURI})`} />
+                  <h4>HTML</h4>
+                  <Code
+                    h='html'
+                    c={`
+                      <img
+                        src="https://devapix.vercel.app/api?${aURI}"
+                        title"${req.i ?? ''}"
+                        alt="${req.i ?? ''}"/>
+                    `} />
+                </div>
+                : ''
+            }
+            {
+              req.t ?
+                <div>
+                  <h4>Markdown and HTML</h4>
                   <Code
                     h='html'
                     c={`

@@ -1,6 +1,7 @@
 .code,
 .inlineCode,
 .highlightCode {
+  font-family: 'Fira Mono', monospace;
   border-radius: 5px;
   background: var(--code-background);
 }

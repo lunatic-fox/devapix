@@ -26,28 +26,38 @@ export default function Page() {
 
       <ReqResExample reqs={[
         {
-          request: 'info?nodejs',
+          request: 'info?elixir',
           code: `
           {
             "project": {
               "version": "latest",
-              "altnames": [],
+              "releases": [
+                "2.10.0",
+                "2.10.1",
+                "2.11.0",
+                "2.12.0",
+                "2.13.0",
+                "2.14.0",
+                "2.15.0",
+                "2.15.1",
+                "2.16.0"
+              ],
+              "altnames": [
+                "elexirlang"
+              ],
               "iconVersions": [
                 "original",
                 "plain",
-                "line",
                 "original-wordmark",
-                "plain-wordmark",
-                "line-wordmark"
+                "plain-wordmark"
               ],
               "tags": [
-                "javascript",
                 "language"
               ],
-              "color": "#5fa04e"
+              "color": "#380A4D"
             },
             "request": {
-              "name": "nodejs",
+              "name": "elixir",
               "version": "original"
             }
           }`

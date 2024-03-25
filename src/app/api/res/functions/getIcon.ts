@@ -2,6 +2,7 @@ import { optimize } from 'svgo'
 import { DJson, DeviconFiles, RequestObject } from '../types'
 import badRequest from './badRequest'
 
+const BASE_URL = 'https://cdn.jsdelivr.net/gh/devicons/devicon'
 const DEFAULT_ICON_SIZE = 128
 const ICON_VERSIONS: { [k: string]: string } = {
   o: 'original',
@@ -13,6 +14,23 @@ const ICON_VERSIONS: { [k: string]: string } = {
 }
 const THEMES: { [k: string]: string } = { d: 'dark', l: 'light' }
 
+const RELEASES = [
+  '2.7',
+  '2.8.0',
+  '2.8.1',
+  '2.8.2',
+  '2.9.0',
+  '2.10.0',
+  '2.10.1',
+  '2.11.0',
+  '2.12.0',
+  '2.13.0',
+  '2.14.0',
+  '2.15.0',
+  '2.15.1',
+  '2.16.0',
+]
+
 export default async function getIcon(req: RequestObject) {
   /** Response icon */
   let icon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M128 2.475c-32.15 0-64.36 12.265-88.82 36.724-48.919 48.919-48.915 128.72.004 177.639 48.918 48.918 128.716 48.918 177.634 0 48.919-48.918 48.919-128.719 0-177.637C192.36 14.742 160.15 2.475 128 2.475zm0 34.832c17.658 0 35.29 5.15 50.545 15.447L52.732 178.564C28.906 143.28 32.58 95.244 63.902 63.92 81.682 46.14 104.816 37.306 128 37.307zm75.27 40.166c23.828 35.284 20.154 83.32-11.17 114.644-31.325 31.325-79.36 35-114.645 11.17L203.27 77.473z"/></svg>`
@@ -23,8 +41,9 @@ export default async function getIcon(req: RequestObject) {
       info: badRequest.noIcon,
     }
 
-  let baseUrl = 'https://cdn.jsdelivr.net/gh/devicons/devicon'
-  if (req.pv) baseUrl = `${baseUrl}@${req.pv}`
+
+  let url = BASE_URL
+  if (req.pv) url = `${BASE_URL}@${req.pv}`
 
   /** Devicon Files */
   const dFiles: DeviconFiles = {}
@@ -32,9 +51,9 @@ export default async function getIcon(req: RequestObject) {
   /** Devicon JSON get */
   let dJGet: DJson | null = {} as DJson
 
-  const dJson = await fetch(`${baseUrl}/devicon.json`)
+  const dJson = await fetch(`${url}/devicon.json`)
 
-  if (dJson.ok) {
+  if (dJson.status === 200) {
     dFiles.json = await dJson.json()
 
     if (req.i) {
@@ -54,7 +73,7 @@ export default async function getIcon(req: RequestObject) {
       }
     }
 
-    if (dJGet) {
+    if (dJGet?.versions && dJGet.aliases) {
       req.i = dJGet.name
 
       const versionPriority = Object.keys(ICON_VERSIONS)
@@ -82,7 +101,7 @@ export default async function getIcon(req: RequestObject) {
         if (req.v.match(/ow?/) && !dJGet.versions.font.includes(req.v))
           req.v = req.v.replace('o', 'p')
 
-      if (dJGet.aliases.length > 0) {
+      if (dJGet.aliases && dJGet.aliases.length > 0) {
         dJGet.aliases.map(e => (
           e.base = e.base.split('-').map(f => f[0]).join(''),
           e.alias = e.alias.split('-').map(f => f[0]).join('')
@@ -93,81 +112,112 @@ export default async function getIcon(req: RequestObject) {
       }
 
       if (dJGet.vFlat.filter(e => e === req.v).length > 0)
-        icon = await (await fetch(`${baseUrl}/icons/${req.i}/${req.i}-${ICON_VERSIONS[req.v]}.svg`)).text()
+        icon = await (await fetch(`${url}/icons/${req.i}/${req.i}-${ICON_VERSIONS[req.v]}.svg`)).text()
     }
-  }
 
-  icon = optimize(icon, {
-    multipass: true,
-    plugins: [
-      'removeDimensions',
-      'convertStyleToAttrs',
-      {
-        name: 'convertShapeToPath',
-        params: {
-          convertArcs: true,
-          floatPrecision: 2
+    icon = optimize(icon, {
+      multipass: true,
+      plugins: [
+        'removeDimensions',
+        'convertStyleToAttrs',
+        {
+          name: 'convertShapeToPath',
+          params: {
+            convertArcs: true,
+            floatPrecision: 2
+          }
+        },
+        {
+          name: 'removeAttrs',
+          params: {
+            attrs: 'class'
+          }
         }
-      },
-      {
-        name: 'removeAttrs',
-        params: {
-          attrs: 'class'
-        }
+      ]
+    }).data
+
+    const paint = (color: string) => {
+      icon = icon.replace(/fill=".+?"/g, '')
+        .replace(/\s+/g, ' ')
+        .replace(/(<path)/g, `$1 fill="${color}"`)
+    }
+
+    if (!icon.match(/fill=".+?"/g))
+      paint(dJGet?.color as string)
+
+    if (req.c)
+      paint(req.c)
+
+    if (req.t && req.t.match(/d|l/))
+      paint(req.t === 'd' ? '#fff' : '#000')
+
+    icon = req.s ? icon.replace(/(viewBox=".+?")/, `$1 width="${req.s}" height="${req.s}"`)
+      : icon.replace(/(viewBox=".+?")/, `$1 width="${DEFAULT_ICON_SIZE}" height="${DEFAULT_ICON_SIZE}"`)
+
+
+    const findReleases = async () => {
+      const rVersions: { v: string, i: string[] }[] = []
+
+      for (const r of RELEASES) {
+        const req = await (await fetch(`${BASE_URL}@${r}/devicon.json`)).json()
+        rVersions.push({ v: r, i: req.map((e: { name: string }) => e.name) })
       }
-    ]
-  }).data
 
-  const paint = (color: string) => {
-    icon = icon.replace(/fill=".+?"/g, '')
-      .replace(/\s+/g, ' ')
-      .replace(/(<path)/g, `$1 fill="${color}"`)
-  }
+      const pvs: { [k: string]: string[] } = {}
+      rVersions.forEach(rv => {
+        rv.i.forEach(icon => {
+          if (!pvs[icon]) pvs[icon] = []
+          pvs[icon].push(rv.v)
+        })
+      })
 
-  if (!icon.match(/fill=".+?"/g))
-    paint(dJGet?.color as string)
+      return pvs
+    }
 
-  if (req.c)
-    paint(req.c)
+    const infoObject = {
+      project: {
+        version: req.pv ? req.pv : 'latest',
+        releases: req.i ? (await findReleases())[req.i] : null,
+        altnames: dJGet?.altnames,
+        iconVersions: dJGet?.vFlat ? dJGet.vFlat.map(e => ICON_VERSIONS[e]) : null,
+        tags: dJGet?.tags
+      } as {
+        version: string
+        releases: string[]
+        altnames: string[]
+        iconVersions: string[]
+        tags: string[]
+        color?: string
+      },
+      request: {
+        name: req.i,
+        version: req.v && ICON_VERSIONS[req.v]
+      } as {
+        name: string
+        version: string
+        color?: string
+        theme?: string
+        size?: number
+      }
+    }
 
-  if (req.t && req.t.match(/d|l/))
-    paint(req.t === 'd' ? '#fff' : '#000')
+    infoObject.project.color = dJGet?.color && dJGet.color
+    infoObject.request.color = req.c && req.c
+    infoObject.request.theme = req.t && THEMES[req.t]
+    infoObject.request.size = req.s && req.s
 
-  icon = req.s ? icon.replace(/(viewBox=".+?")/, `$1 width="${req.s}" height="${req.s}"`)
-    : icon.replace(/(viewBox=".+?")/, `$1 width="${DEFAULT_ICON_SIZE}" height="${DEFAULT_ICON_SIZE}"`)
-
-  const infoObject = {
-    project: {
-      version: req.pv ? req.pv : 'latest',
-      altnames: dJGet?.altnames,
-      iconVersions: dJGet?.vFlat.map(e => ICON_VERSIONS[e]) ?? null,
-      tags: dJGet?.tags
-    } as {
-      version: string
-      altnames: string[]
-      iconVersions: string[]
-      tags: string[]
-      color?: string
-    },
-    request: {
-      name: req.i,
-      version: req.v && ICON_VERSIONS[req.v]
-    } as {
-      name: string
-      version: string
-      color?: string
-      theme?: string
-      size?: number
+    return {
+      info: JSON.stringify(infoObject, null, 2),
+      svg: icon
     }
   }
-
-  infoObject.project.color = dJGet?.color && dJGet.color
-  infoObject.request.color = req.c && req.c
-  infoObject.request.theme = req.t && THEMES[req.t]
-  infoObject.request.size = req.s && req.s
 
   return {
-    info: JSON.stringify(infoObject, null, 2),
+    info: JSON.stringify({
+      project: {
+        iconVersions: null
+      }
+    }, null, 2),
     svg: icon
   }
 }

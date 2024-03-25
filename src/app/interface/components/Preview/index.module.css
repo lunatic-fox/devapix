@@ -1,8 +1,9 @@
 .previewBigWrapper {
   display: flex;
   flex-direction: column;
-  width: 100vmin;
+  /* width: 100vmin; */
   padding: 20px;
+  /* background-color: tomato; */
 }
 .previewWrapper {
   display: flex;
@@ -120,4 +121,27 @@
 .preview img {
   max-width: calc(100vmin - 40px);
   height: 100%;
+}
+
+.themedWrapper,
+.themedLight,
+.themedDark {
+  width: 128px;
+  height: 128px;
+}
+
+.themedWrapper {
+  position: relative;
+}
+
+.themedLight,
+.themedDark {
+  position: absolute;
+}
+
+.themedDark {
+  mask-image: url(/img/triangle-d.svg);
+}
+.themedLight {
+  mask-image: url(/img/triangle-l.svg);
 }
