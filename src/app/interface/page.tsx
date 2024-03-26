@@ -3,15 +3,14 @@ import styles from './page.module.css'
 import Image from 'next/image'
 import { useEffect, useId, useState } from 'react'
 import Preview from './components/Preview'
-import findProjectVersion from './functions/findProjectVersion'
+import getProjectVersions from '../../functions/getProjectVersions'
 
 export default function Page() {
   const inputsIds = Object.fromEntries(['iid', 'pvid', 'vid', 'cid', 'tid', 'sid', 'submitId'].map(k => [k, useId()]))
 
-  const fPvs = findProjectVersion()
   const [pvs, setPvs] = useState({} as { [k: string]: string[] })
 
-  useEffect(() => { fPvs.then(e => setPvs(e)) }, [pvs])
+  useEffect(() => { getProjectVersions().then(e => setPvs(e)) }, [pvs])
 
   return (
     <main className={styles.main}>

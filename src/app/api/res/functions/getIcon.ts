@@ -1,6 +1,10 @@
+import path from 'path'
+import { promises as fs } from 'fs'
+
 import { optimize } from 'svgo'
 import { DJson, DeviconFiles, RequestObject } from '../types'
 import badRequest from './badRequest'
+import getProjectVersions from '@/functions/getProjectVersions'
 
 const BASE_URL = 'https://cdn.jsdelivr.net/gh/devicons/devicon'
 const DEFAULT_ICON_SIZE = 128
@@ -13,23 +17,6 @@ const ICON_VERSIONS: { [k: string]: string } = {
   lw: 'line-wordmark'
 }
 const THEMES: { [k: string]: string } = { d: 'dark', l: 'light' }
-
-const RELEASES = [
-  '2.7',
-  '2.8.0',
-  '2.8.1',
-  '2.8.2',
-  '2.9.0',
-  '2.10.0',
-  '2.10.1',
-  '2.11.0',
-  '2.12.0',
-  '2.13.0',
-  '2.14.0',
-  '2.15.0',
-  '2.15.1',
-  '2.16.0',
-]
 
 export default async function getIcon(req: RequestObject) {
   /** Response icon */
@@ -154,30 +141,12 @@ export default async function getIcon(req: RequestObject) {
     icon = req.s ? icon.replace(/(viewBox=".+?")/, `$1 width="${req.s}" height="${req.s}"`)
       : icon.replace(/(viewBox=".+?")/, `$1 width="${DEFAULT_ICON_SIZE}" height="${DEFAULT_ICON_SIZE}"`)
 
-
-    const findReleases = async () => {
-      const rVersions: { v: string, i: string[] }[] = []
-
-      for (const r of RELEASES) {
-        const req = await (await fetch(`${BASE_URL}@${r}/devicon.json`)).json()
-        rVersions.push({ v: r, i: req.map((e: { name: string }) => e.name) })
-      }
-
-      const pvs: { [k: string]: string[] } = {}
-      rVersions.forEach(rv => {
-        rv.i.forEach(icon => {
-          if (!pvs[icon]) pvs[icon] = []
-          pvs[icon].push(rv.v)
-        })
-      })
-
-      return pvs
-    }
+    const pvs = await fs.readFile(path.join(process.cwd(), 'src/app/interface/data/releases.json'), 'utf8')
 
     const infoObject = {
       project: {
         version: req.pv ? req.pv : 'latest',
-        releases: req.i ? (await findReleases())[req.i] : null,
+        releases: req.i ? JSON.parse(pvs)[req.i] : null,
         altnames: dJGet?.altnames,
         iconVersions: dJGet?.vFlat ? dJGet.vFlat.map(e => ICON_VERSIONS[e]) : null,
         tags: dJGet?.tags
