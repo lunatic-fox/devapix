@@ -24,6 +24,10 @@ fetch('https://api.github.com/repos/devicons/devicon/releases').then(data => {
         })
       })
 
+      const dataPath = './src/app/interface/data/'
+      if (!fs.existsSync(dataPath))
+        fs.mkdirSync(dataPath)
+
       fs.writeFileSync('./src/app/interface/data/releases.json', JSON.stringify(pvs, null, 2))
     }
 
