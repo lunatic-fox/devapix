@@ -1,0 +1,9 @@
+.logoBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoBox img {
+  margin: 10px 5px;
+}

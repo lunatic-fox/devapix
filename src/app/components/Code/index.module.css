@@ -1,0 +1,86 @@
+.code,
+.inlineCode {
+  font-family: 'Fira Mono', monospace;
+  border-radius: 5px;
+  background: var(--code-background);
+}
+
+.code {
+  --size: 16px;
+  padding: 10px;
+  margin: 0 5px;
+  font-size: var(--size);
+  overflow-x: hidden;
+}
+
+.code *::selection ,
+.highlightWrapper *::selection {
+  background: #65009f;
+  border-radius: 100px;
+}
+
+.code + h6 {
+  color: var(--g4d);
+  text-align: right;
+  margin-right: 10px;
+}
+
+.copied {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: var(--accent-sidebar);
+  color: #fff;
+  animation: copiedFade 1s ease-in-out 0s 1 normal forwards;
+  user-select: none;
+}
+
+@keyframes copiedFade {
+  to {
+    opacity: 0;
+  }
+}
+
+.code span {
+  white-space: preserve nowrap;
+}
+
+.code {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  white-space: pre-line;
+}
+
+.highlightWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.highlightCode {
+  display: block;
+  white-space: pre;
+}
+
+.code img {
+  display: inline-block;
+  width: var(--size)
+}
+
+.inlineCode {
+  display: inline-flex;
+  padding: 3px 5px;
+  font-size: 14px;
+}
+
+/* @media (max-width: 800px) {
+  .code,
+  .highlightCode {
+    max-width: calc(100vw - 80px);
+  }
+} */
