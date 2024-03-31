@@ -1,10 +1,8 @@
 import path from 'path'
 import { promises as fs } from 'fs'
-
 import { optimize } from 'svgo'
 import { DJson, DeviconFiles, RequestObject } from '../types'
 import badRequest from './badRequest'
-import getProjectVersions from '@/functions/getProjectVersions'
 
 const BASE_URL = 'https://cdn.jsdelivr.net/gh/devicons/devicon'
 const DEFAULT_ICON_SIZE = 128
@@ -141,7 +139,7 @@ export default async function getIcon(req: RequestObject) {
     icon = req.s ? icon.replace(/(viewBox=".+?")/, `$1 width="${req.s}" height="${req.s}"`)
       : icon.replace(/(viewBox=".+?")/, `$1 width="${DEFAULT_ICON_SIZE}" height="${DEFAULT_ICON_SIZE}"`)
 
-    const pvs = await fs.readFile(path.join(process.cwd(), 'src/app/interface/data/releases.json'), 'utf8')
+    const pvs = await fs.readFile(path.join(process.cwd(), 'src/app/data/releases.json'), 'utf8')
 
     const infoObject = {
       project: {
