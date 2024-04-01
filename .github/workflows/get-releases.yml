@@ -1,0 +1,24 @@
+name: Get releases
+on:
+  - push
+  - workflow_dispatch
+jobs:
+  get:
+    name: Get all releases from Devicon
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - env:
+          SPATH: ./.github/scripts/get-releases.js
+        run: |
+          chmod +x ${{ env.SPATH }}
+          node ${{ env.SPATH }}
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update releases.json
