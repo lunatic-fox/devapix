@@ -70,7 +70,7 @@ export default function Docs({ children, refs }: {
               {
                 [
                   'icon',
-                  'project-version',
+                  'release',
                   'version',
                   'size',
                   'color',

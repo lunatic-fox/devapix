@@ -12,8 +12,8 @@ export default function Page() {
         },
         currentDoc: 'getting-icons/icon',
         nextDoc: {
-          link: 'getting-icons/project-version',
-          label: 'Getting icons: Project Version'
+          link: 'getting-icons/release',
+          label: 'Getting icons: Release'
         }
       }}>
       <h2>

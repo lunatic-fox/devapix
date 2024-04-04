@@ -7,8 +7,8 @@ export default function Page() {
     <Docs
       refs={{
         previousDoc: {
-          link: 'getting-icons/project-version',
-          label: 'Getting icons: Project Version'
+          link: 'getting-icons/release',
+          label: 'Getting icons: Release'
         },
         currentDoc: 'getting-icons/version',
         nextDoc: {
