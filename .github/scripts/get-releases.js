@@ -25,7 +25,7 @@ fetch('https://api.github.com/repos/devicons/devicon/releases').then(data => {
         })
       })
 
-      const dataPath = './src/app/data/'
+      const dataPath = './res'
       if (!fs.existsSync(dataPath))
         fs.mkdirSync(dataPath)
 
