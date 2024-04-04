@@ -26,9 +26,8 @@ export default async function getIcon(req: RequestObject) {
       info: badRequest.noIcon,
     }
 
-
   let url = BASE_URL
-  if (req.pv) url = `${BASE_URL}@${req.pv}`
+  if (req.r) url = `${BASE_URL}@${req.r}`
 
   /** Devicon Files */
   const dFiles: DeviconFiles = {}
@@ -44,7 +43,7 @@ export default async function getIcon(req: RequestObject) {
       if (req.i) {
         req.i = req.i.toLowerCase()
         const fName = dFiles.json.find(e => e.name === req.i)
-        const fAltname = dFiles.json.find(e => e.altnames.map(f => f.replace(/\s/g, '').toLowerCase()).includes(req.i as string))
+        const fAltname = dFiles.json.find(e => e.altnames?.map(f => f.replace(/\s/g, '').toLowerCase()).includes(req.i as string))
         dJGet = fName ? fName : fAltname ? fAltname : null
       }
 
@@ -146,23 +145,17 @@ export default async function getIcon(req: RequestObject) {
     const pvs = await fs.readFile(path.join(process.cwd(), 'res/releases.json'), 'utf8')
 
     const infoObject = {
-      request: {
-        name: req.i,
-        release: req.pv ? req.pv : 'latest',
-        version: req.v && ICON_VERSIONS[req.v]
-      },
+      request: { name: req.i },
       project: {
         name: dJGet?.name,
         altnames: dJGet?.altnames,
-        releases: dJGet?.name ? JSON.parse(pvs)[dJGet.name] : null,
-        versions: dJGet?.vFlat ? dJGet.vFlat.map(e => ICON_VERSIONS[e]) : null,
         tags: dJGet?.tags
       }
     } as {
       request: {
         name: string
-        release: string
-        version: string
+        release?: string
+        version?: string
         color?: string
         theme?: string
         size?: number
@@ -170,17 +163,24 @@ export default async function getIcon(req: RequestObject) {
       project: {
         name: string
         altnames: string[]
-        releases: string[]
-        versions: string[]
+        releases?: string[]
+        versions?: string[]
         tags: string[]
         color?: string
       }
     }
 
-    infoObject.request.color = req.c && req.c
-    infoObject.request.theme = req.t && THEMES[req.t]
-    infoObject.request.size = req.s && req.s
-    infoObject.project.color = dJGet?.color && dJGet.color
+    if (dJGet?.name) {
+      const [r, p] = [infoObject.request, infoObject.project]
+      r.release = req.r ? req.r : 'latest'
+      r.version = req.v && ICON_VERSIONS[req.v]
+      r.color = req.c && req.c
+      r.theme = req.t && THEMES[req.t]
+      r.size = req.s && req.s
+      p.color = dJGet.color
+      p.releases = JSON.parse(pvs)[dJGet.name]
+      p.versions = dJGet.vFlat.map(e => ICON_VERSIONS[e])
+    }
 
     return {
       info: JSON.stringify(infoObject, null, 2),
@@ -190,9 +190,15 @@ export default async function getIcon(req: RequestObject) {
 
   return {
     info: JSON.stringify({
-      project: {
-        iconVersions: null
-      }
+      request: {
+        name: req.i,
+        release: req.r,
+        version: req.v,
+        color: req.c,
+        theme: req.t,
+        size: req.s
+      },
+      project: {}
     }, null, 2),
     svg: icon
   }

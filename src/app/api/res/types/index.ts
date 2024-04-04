@@ -1,11 +1,11 @@
 export type RequestObject = {
-  /** Project version */ pv?: string
-  /** Icon            */ i?: string
-  /** Version         */ v?: string
-  /** Color           */ c?: string
-  /** Theme           */ t?: string
-  /** Size            */ s?: number
-  /** Tag             */ tag?: string
+  /** Release */ r?: string
+  /** Icon    */ i?: string
+  /** Version */ v?: string
+  /** Color   */ c?: string
+  /** Theme   */ t?: string
+  /** Size    */ s?: number
+  /** Tag     */ tag?: string
 }
 
 export type DJson = {
