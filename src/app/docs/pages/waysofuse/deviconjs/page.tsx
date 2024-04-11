@@ -109,7 +109,7 @@ export default function Page() {
       `} />
       <ReqResExample
         title={false}
-        reqs={['chakraui&pv=dev&v=o&t=d&s=64']} />
+        reqs={['chakraui&r=dev&v=o&t=d&s=64']} />
     </Docs>
   )
 }

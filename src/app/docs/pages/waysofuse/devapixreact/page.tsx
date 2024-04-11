@@ -49,7 +49,7 @@ export default function Page() {
         icon: string
 
         // Optional properties
-        projectVersion: string
+        release: string
         version:
             'o'  | 'original'
           | 'p'  | 'plain'
@@ -77,7 +77,7 @@ export default function Page() {
               <h2>Twitter logo</h2>
               <Devicon 
                 icon='twitter'
-                projectVersion='2.15.1'
+                release='2.15.1'
                 version={'p'}
                 color='#c7bd2b'
                 size={64}/>
@@ -87,7 +87,7 @@ export default function Page() {
       `} />
       <ReqResExample
         title={false}
-        reqs={['twitter&pv=2.15.1&v=p&c=c7bd2b&s=64']} />
+        reqs={['twitter&r=2.15.1&v=p&c=c7bd2b&s=64']} />
       <hr />
       <h4>ChakraUI icon</h4>
       <h5>page.jsx</h5>
@@ -102,7 +102,7 @@ export default function Page() {
               <h2>ChakraUI logo</h2>
               <Devicon 
                 icon='rust'
-                projectVersion='2.15.1'
+                release='2.15.1'
                 version={'p'}
                 theme={'light'}
                 size={64}/>
@@ -112,7 +112,7 @@ export default function Page() {
       `} />
       <ReqResExample
         title={false}
-        reqs={['chakraui&pv=dev&v=p&t=l&s=64']} />
+        reqs={['chakraui&r=dev&v=p&t=l&s=64']} />
     </Docs>
   )
 }
