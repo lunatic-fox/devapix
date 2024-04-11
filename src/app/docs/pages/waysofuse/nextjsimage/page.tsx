@@ -4,18 +4,7 @@ import ReqResExample from '@/app/docs/components/ReqResExample'
 
 export default function Page() {
   return (
-    <Docs refs={{
-      previousDoc: {
-        link: 'ways-of-use/img',
-        label: 'Ways of use: <img>'
-      },
-      currentDoc: 'ways-of-use/nextjs-image',
-      nextDoc: {
-        link: 'ways-of-use/deviconjs',
-        label: 'Ways of use: devicon.js'
-      }
-    }}>
-      <h2>{`Next.js <Image>`}</h2>
+    <Docs title='Ways of use: Next.js <Image>'>
       <p>
         <Code ic='<Image>' /> is a particular element of Next.js framework that is very similar with the regular HTML <Code ic='<img>' /> element. However, it needs some configurations before work properly.
       </p>

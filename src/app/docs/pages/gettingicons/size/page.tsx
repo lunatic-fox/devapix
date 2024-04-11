@@ -4,21 +4,7 @@ import ReqResExample from '@/app/docs/components/ReqResExample'
 
 export default function Page() {
   return (
-    <Docs
-      refs={{
-        previousDoc: {
-          link: 'getting-icons/version',
-          label: 'Getting icons: Version'
-        },
-        currentDoc: 'getting-icons/size',
-        nextDoc: {
-          link: 'getting-icons/color',
-          label: 'Getting icons: Color'
-        }
-      }}>
-      <h2>
-        Getting icons: Size
-      </h2>
+    <Docs title='Getting icons: Size'>
       <p>
         <Code ic='size' /> is an optional property that can be specified by the key <Code ic='size' /> or <Code ic='s' />. Its value have to be an <Code ic='integer' /> to change the icon size in pixels.
       </p>

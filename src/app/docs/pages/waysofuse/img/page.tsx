@@ -4,18 +4,7 @@ import ReqResExample from '@/app/docs/components/ReqResExample'
 
 export default function Page() {
   return (
-    <Docs refs={{
-      previousDoc: {
-        link: 'getting-info/tag',
-        label: 'Getting info: Tag'
-      },
-      currentDoc: 'ways-of-use/img',
-      nextDoc: {
-        link: 'ways-of-use/nextjs-image',
-        label: 'Ways of use: Next.js <Image>'
-      }
-    }}>
-      <h2>{`<img>`}</h2>
+    <Docs title='Ways of use: <img>'>
       <p>
         This is the basic and more direct approach of how to use Devapix into your project. Let's take a look at an example inside a <Code ic='.html' /> file.
       </p>

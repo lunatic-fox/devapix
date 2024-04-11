@@ -4,18 +4,7 @@ import ReqResExample from '@/app/docs/components/ReqResExample'
 
 export default function Page() {
   return (
-    <Docs refs={{
-      previousDoc: {
-        link: 'ways-of-use/deviconjs',
-        label: 'Ways of use: devicon.js'
-      },
-      currentDoc: 'ways-of-use/devapixreact',
-      nextDoc: {
-        link: 'ways-of-use/devapixtsreact',
-        label: 'Ways of use: @devapix/ts-react'
-      }
-    }}>
-      <h2>@devapix/react</h2>
+    <Docs title='Ways of use: @devapix/react'>
       <p>
         To use <Code ic='<Devicon>' /> React element with React you just need to install <Code ic='@devapix/react' /> npm package.
       </p>

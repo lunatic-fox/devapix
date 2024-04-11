@@ -4,18 +4,7 @@ import ReqResExample from '@/app/docs/components/ReqResExample'
 
 export default function Page() {
   return (
-    <Docs refs={{
-      previousDoc: {
-        link: 'ways-of-use/nextjs-image',
-        label: 'Ways of use: Next.js <Image>'
-      },
-      currentDoc: 'ways-of-use/deviconjs',
-      nextDoc: {
-        link: 'ways-of-use/devapixreact',
-        label: 'Ways of use: @devapix/react'
-      }
-    }}>
-      <h2>devicon.js</h2>
+    <Docs title='Ways of use: devicon.js'>
       <p>
         To use <Code ic='<devicon>' /> tag with pure JavaScript you just need to add Devapix <Code ic='script' /> into your <Code ic='.html' /> file.
       </p>

@@ -3,16 +3,20 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useId, useState } from 'react'
 import styles from './index.module.css'
+import DOCS_INDEX from '../../res/docsIndex'
 
-const DOCS_PATH = '/docs/pages/'
-export default function Docs({ children, refs }: {
+export default function Docs({ title, children }: {
+  title: string
   children: React.ReactNode
-  refs: {
-    currentDoc: string
-    previousDoc?: { link: string, label: string }
-    nextDoc?: { link: string, label: string }
-  }
 }) {
+  const titleKey = title.replace(/[^a-z]/gi, '').toLowerCase()
+  const cPos = Object.keys(DOCS_INDEX).indexOf(titleKey)
+  const indexPos = {
+    previous: cPos > 0 ? DOCS_INDEX[Object.keys(DOCS_INDEX)[cPos - 1]] : null,
+    current: DOCS_INDEX[titleKey],
+    next: cPos < Object.keys(DOCS_INDEX).length ? DOCS_INDEX[Object.keys(DOCS_INDEX)[cPos + 1]] : null
+  }
+
   const sidebarId = useId()
   const [headerOptions, setHeaderOptions] = useState(false)
   const handleHeaderOptions = (ev: React.MouseEvent) => {
@@ -21,8 +25,38 @@ export default function Docs({ children, refs }: {
     sidebarElement.style.display = headerOptions ? 'none' : 'block'
   }
 
-  const highlight = (href: string) => `${DOCS_PATH}${refs.currentDoc}` === href ? styles.sidebarOn : ''
-  const rmHyphen = (str: string) => str.split('-').map(e => `${e[0].toUpperCase()}${e.slice(1)}`).join(' ')
+  const highlight = (href: string) => indexPos.current.path === href ? styles.sidebarOn : ''
+
+  const handleOpenIndex = (topic: string, array?: boolean) => {
+    if (array) {
+      const pDocsIndex = Object.values(DOCS_INDEX).filter(v => v.path.includes(topic))
+      const topicLabel = pDocsIndex[0].label.replace(/^(.+?):.+/, '$1')
+      const aDocsIndex = pDocsIndex.map(v => ({
+        path: v.path,
+        label: v.label.replace(/^.+?:\s(.+)/, '$1')
+      }))
+
+      return (
+        <details open={indexPos.current.path.includes(topic)}>
+          <summary>{topicLabel}</summary>
+          {
+            aDocsIndex.map((e, i) =>
+              <Link key={i} href={e.path}>
+                <section className={highlight(e.path)}>{e.label}</section>
+              </Link>)
+          }
+        </details>
+      )
+    }
+
+    return (
+      <Link href={DOCS_INDEX[topic].path}>
+        <section className={highlight(DOCS_INDEX[topic].path)}>{
+          DOCS_INDEX[topic].label
+        }</section>
+      </Link>
+    )
+  }
 
   return (
     <main className={styles.main}>
@@ -60,85 +94,22 @@ export default function Docs({ children, refs }: {
       <section className={styles.bigWrapper}>
         <aside id={sidebarId} className={styles.sidebar}>
           <div className={styles.sidebarInfo}>
-            <Link href='/docs/pages/introduction'>
-              <section className={highlight('/docs/pages/introduction')}>Introduction</section>
-            </Link>
-            <details open={
-              refs.currentDoc.match(RegExp('^getting-icons')) ? true : false
-            }>
-              <summary>Getting icons</summary>
-              {
-                [
-                  'icon',
-                  'release',
-                  'version',
-                  'size',
-                  'color',
-                  'theme'
-                ].map((e, i) => {
-                  const href = `/docs/pages/getting-icons/${e}`
-                  return (
-                    <Link key={i} href={href}>
-                      <section className={highlight(href)}>{rmHyphen(e)}</section>
-                    </Link>
-                  )
-                })
-              }
-            </details>
-
-            <details open={
-              refs.currentDoc.match(RegExp('^getting-info')) ? true : false
-            }>
-              <summary>Getting info</summary>
-              {
-                [
-                  'icon',
-                  'tag'
-                ].map((e, i) => {
-                  const href = `/docs/pages/getting-info/${e}`
-                  return (
-                    <Link key={i} href={href}>
-                      <section className={highlight(href)}>{rmHyphen(e)}</section>
-                    </Link>
-                  )
-                })
-              }
-            </details>
-
-            <details open={
-              refs.currentDoc.match(RegExp('^ways-of-use')) ? true : false
-            }>
-              <summary>Ways of use</summary>
-              {
-                [
-                  '<img>',
-                  'Next.js <Image>',
-                  'devicon.js',
-                  '@devapix/react'
-                ].map((e, i) => {
-                  const href = `/docs/pages/ways-of-use/${e.replace(/[<>.@/-]/g, '')
-                      .replace(/\s/g, '-')
-                      .toLowerCase()
-                    }`
-                  return (
-                    <Link key={i} href={href}>
-                      <section className={highlight(href)}>{e}</section>
-                    </Link>
-                  )
-                })
-              }
-            </details>
-            <Link href='/docs/pages/credits'>
-              <section className={highlight('/docs/pages/credits')}>Credits</section>
-            </Link>
+            {handleOpenIndex('introduction')}
+            {handleOpenIndex('gettingicons', true)}
+            {handleOpenIndex('gettinginfo', true)}
+            {handleOpenIndex('waysofuse', true)}
+            {handleOpenIndex('credits')}
           </div>
         </aside>
         <section className={styles.articleWrapper}>
-          <article className={styles.article}>{children}</article>
+          <article className={styles.article}>
+            <h2>{title}</h2>
+            {children}
+          </article>
           <section className={styles.pages}>
             {
-              refs.previousDoc ?
-                <Link href={`${DOCS_PATH}${refs.previousDoc.link}`}>
+              indexPos.previous ?
+                <Link href={indexPos.previous.path}>
                   <button>
                     <Image
                       src='/img/icon/left.svg'
@@ -146,16 +117,16 @@ export default function Docs({ children, refs }: {
                       height={12}
                       alt='Left'
                       priority={true} />
-                    {refs.previousDoc.label}
+                    {indexPos.previous.label}
                   </button>
                 </Link>
                 : <section></section>
             }
             {
-              refs.nextDoc ?
-                <Link href={`${DOCS_PATH}${refs.nextDoc.link}`}>
+              indexPos.next ?
+                <Link href={indexPos.next.path}>
                   <button>
-                    {refs.nextDoc.label}
+                    {indexPos.next.label}
                     <Image
                       src='/img/icon/right.svg'
                       width={12}

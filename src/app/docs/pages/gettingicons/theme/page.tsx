@@ -4,21 +4,7 @@ import ReqResExample from '@/app/docs/components/ReqResExample'
 
 export default function Page() {
   return (
-    <Docs
-      refs={{
-        previousDoc: {
-          link: 'getting-icons/color',
-          label: 'Getting icons: Color'
-        },
-        currentDoc: 'getting-icons/theme',
-        nextDoc: {
-          link: 'getting-info/icon',
-          label: 'Getting info: Icon'
-        }
-      }}>
-      <h2>
-        Getting icons: Theme
-      </h2>
+    <Docs title='Getting icons: Theme'>
       <p>
         <Code ic='theme' /> is an optional property that can be specified by the key <Code ic='theme' /> or <Code ic='t' />. Its values can be <Code ic='dark' /> or <Code ic='d' />, and <Code ic='light' /> or <Code ic='l' />. This property has priority over <Code ic='color' />, in other words, if both properties are present only <Code ic='theme' /> will work.
       </p>

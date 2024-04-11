@@ -4,21 +4,7 @@ import ReqResExample from '@/app/docs/components/ReqResExample'
 
 export default function Page() {
   return (
-    <Docs
-      refs={{
-        previousDoc: {
-          link: 'getting-icons/icon',
-          label: 'Getting icons: Icon'
-        },
-        currentDoc: 'getting-icons/release',
-        nextDoc: {
-          link: 'getting-icons/version',
-          label: 'Getting icons: Version'
-        }
-      }}>
-      <h2>
-        Getting icons: Release
-      </h2>
+    <Docs title='Getting icons: Release'>
       <p>
         It is possible to get an icon from a previous or next release of Devicon by specifying the project version through <Code ic='release' /> or <Code ic='r' /> key.
       </p>

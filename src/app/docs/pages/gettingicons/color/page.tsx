@@ -4,21 +4,7 @@ import ReqResExample from '@/app/docs/components/ReqResExample'
 
 export default function Page() {
   return (
-    <Docs
-      refs={{
-        previousDoc: {
-          link: 'getting-icons/size',
-          label: 'Getting icons: Size'
-        },
-        currentDoc: 'getting-icons/color',
-        nextDoc: {
-          link: 'getting-icons/theme',
-          label: 'Getting icons: Theme'
-        }
-      }}>
-      <h2>
-        Getting icons: Color
-      </h2>
+    <Docs title='Getting icons: Color'>
       <p>
         <Code ic='color' /> is an optional property that can be specified by the key <Code ic='color' /> or <Code ic='c' />. Its value have to be a hexadecimal or CSS valid color.
       </p>

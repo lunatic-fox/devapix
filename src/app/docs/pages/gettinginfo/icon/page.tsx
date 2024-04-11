@@ -4,21 +4,7 @@ import ReqResExample from '@/app/docs/components/ReqResExample'
 
 export default function Page() {
   return (
-    <Docs
-      refs={{
-        previousDoc: {
-          link: 'getting-icons/theme',
-          label: 'Getting icons: Theme'
-        },
-        currentDoc: 'getting-info/icon',
-        nextDoc: {
-          link: 'getting-info/tag',
-          label: 'Getting info: Tag'
-        }
-      }}>
-      <h2>
-        Getting info: Icon
-      </h2>
+    <Docs title='Getting info: Icon'>
       <p>
         It is possible to get information, based on <Code ic='devicon.json' /> file, about the icon via <Code ic='project' /> response property. Also check the request values through <Code ic='request' /> if the properties to modify the icon are passed.
       </p>

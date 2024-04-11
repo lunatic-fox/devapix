@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "npm/react/index.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "npm/react/index.jsx", "src/app/docs/res/docs-index.yml", "src/app/docs/res/docsIndex.ts"],
   "exclude": ["node_modules"]
 }

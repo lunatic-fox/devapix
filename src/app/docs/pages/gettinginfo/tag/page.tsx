@@ -4,21 +4,7 @@ import ReqResExample from '@/app/docs/components/ReqResExample'
 
 export default function Page() {
   return (
-    <Docs
-      refs={{
-        previousDoc: {
-          link: 'getting-info/icon',
-          label: 'Getting info: Icon'
-        },
-        currentDoc: 'getting-info/tag',
-        nextDoc: {
-          link: 'ways-of-use/img',
-          label: 'Ways of use: <img>'
-        }
-      }}>
-      <h2>
-        Getting Info: Tag
-      </h2>
+    <Docs title='Getting Info: Tag'>
       <p>
         <Code ic='tag' /> property allows access to a list of icon names that have the same searched tag value in their <Code ic='tags' /> array of <Code ic='devicon.json' /> file.
       </p>
