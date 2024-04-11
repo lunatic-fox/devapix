@@ -215,7 +215,7 @@
   .bigWrapper {
     margin-top: 50px;
   }
-
+  
   .sidebar {
     display: none;
     position: absolute;
@@ -223,10 +223,12 @@
     height: 100%;
     z-index: 1;
   }
-
+  
   .sidebarInfo {
     width: 100%;
-    position: fixed;
+    height: calc(100% - 50px);
+    background: inherit;
+    overflow-y: scroll;
   }
 
   .article,
