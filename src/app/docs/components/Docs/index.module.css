@@ -77,6 +77,8 @@
 .sidebarInfo {
   position: fixed;
   width: 250px;
+  height: calc(100% - 62.8px);
+  overflow-y: scroll;
 }
 
 .sidebar details>summary,
