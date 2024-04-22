@@ -1,6 +1,6 @@
 {
   "name": "@devapix/react",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "JavaScript React component to request an icon of Devapix.",
   "main": "index.jsx",
   "author": "Devapix",
