@@ -5,7 +5,7 @@ export default function literalStringTab(str: string) {
   const nStr = arrStr.map(e => e.replace(/^(\s*).+?$/, '$1').length).filter(e => e > 0)
   let cStr = nStr.length > 0 ? Math.min(...nStr) : null
 
-  if (nStr.every(e => e === cStr) && cStr && nStr.length > 1) 
+  if (nStr.every(e => e === cStr) && cStr && nStr.length > 1 && arrStr[0].match(/^<.+/)) 
     cStr -= 2
   
   if (cStr) 
