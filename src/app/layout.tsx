@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   description: 'Devicon API',
   icons: { icon: '/img/logo.svg' },
   openGraph: {
+    type: 'website',
     images: [
       '/img/banner.png'
     ]
