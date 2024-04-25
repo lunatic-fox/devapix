@@ -1,8 +1,13 @@
 import Code from '@/app/components/Code'
 import Docs from '@/app/docs/components/Docs'
 import ReqResExample from '@/app/docs/components/ReqResExample'
-import Image from 'next/image'
 import responseStyle from '@/app/docs/components/ReqResExample/index.module.css'
+import {
+  DeviconJavascript,
+  DeviconTypescript,
+  DeviconPython,
+  DeviconVscode
+} from '@devapix/react'
 
 export default function Page() {
   return (
@@ -56,7 +61,17 @@ export default function Page() {
       </p>
       <Code
         h='ts'
-        c={`import { DeviconPhotoshop } from '@devapix/react'`} />
+        c={`
+          import { DeviconPhotoshop } from '@devapix/react'
+
+          export default function Page() {
+            return (
+              <section>
+                <DeviconPhotoshop/>
+              </section>
+            )
+          }
+        `} />
       <p>
         This is equivalent to the latest release of <Code ic='photoshop' /> icon.
       </p>
@@ -68,7 +83,17 @@ export default function Page() {
       </p>
       <Code
         h='ts'
-        c={`import { DeviconPhotoshop } from '@devapix/react/2.15.1'`} />
+        c={`
+          import { DeviconPhotoshop } from '@devapix/react/2.15.1'
+          
+          export default function Page() {
+            return (
+              <section>
+                <DeviconPhotoshop/>
+              </section>
+            )
+          }
+        `} />
       <p>
         Is equivalent to <Code ic='photoshop' /> icon of <Code ic='2.15.1' /> release.
       </p>
@@ -94,7 +119,7 @@ export default function Page() {
           | 'lw' | 'line-wordmark'
         color: string
         theme: 'd' | 'dark' | 'l' | 'light'
-        size: number
+        size: number // default: 128
       `} />
       <p>
         Here we have more examples using the rest of properties.
@@ -123,11 +148,24 @@ export default function Page() {
         }
         `} />
 
-      <section className={responseStyle.reqResImgWrapper} style={{display: 'flex', alignItems: 'center'}}>
-        <Image src='https://devapix.vercel.app/api?js&t=l&s=80' width={80} height={80} alt='i' />
-        <Image src='https://devapix.vercel.app/api?ts&t=d' width={64} height={64} alt='i' />
-        <Image src='https://devapix.vercel.app/api?python&c=008004' width={64} height={64} alt='i' />
-        <Image src='https://devapix.vercel.app/api?vscode&v=ow&c=ff5300&s=80' width={80} height={80} alt='i' />
+      <h5>Requests</h5>
+      <Code c={`
+        https://devapix.vercel.app/api?javascript&t=l&s=80
+        https://devapix.vercel.app/api?typescript&t=d
+        https://devapix.vercel.app/api?python&c=008004
+        https://devapix.vercel.app/api?vscode&v=ow&c=ff5300&s=80
+      `}/>
+
+      <h5>Response</h5>
+      <section className={responseStyle.reqResImgWrapper} style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        alignItems: 'center'
+      }}>
+        <DeviconJavascript theme='light' size={80}/>
+        <DeviconTypescript theme='dark'/>
+        <DeviconPython color='#008004'/>
+        <DeviconVscode version='ow' color='#ff5300' size={80}/>
       </section>
       <hr />
 

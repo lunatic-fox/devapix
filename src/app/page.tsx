@@ -51,7 +51,7 @@ export default function Home() {
           </section>
         </Link>
 
-        <Link href='#'>
+        {/* <Link href='#'>
           <section className={styles.card}>
           <section className={styles.underConstruction}>
           <Image
@@ -74,7 +74,7 @@ export default function Home() {
               </p>
             </article>
           </section>
-        </Link>
+        </Link> */}
 
       </section>
     </main>
