@@ -7,7 +7,12 @@ const nunitoSans = Nunito_Sans({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Devapix',
   description: 'Devicon API',
-  icons: { icon: '/img/logo.svg' }
+  icons: { icon: '/img/logo.svg' },
+  openGraph: {
+    images: [
+      '/img/banner.png'
+    ]
+  }
 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
