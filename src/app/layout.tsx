@@ -7,6 +7,7 @@ const nunitoSans = Nunito_Sans({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Devapix',
   description: 'Devicon API',
+  metadataBase: new URL('https://devapix.vercel.app/'),
   icons: { icon: '/img/logo.svg' },
   openGraph: {
     type: 'website',
