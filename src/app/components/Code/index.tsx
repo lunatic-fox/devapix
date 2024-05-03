@@ -11,16 +11,21 @@ function icons(str: string) {
     .replace(/@\[([a-z0-9]+?)\]/g, `<img width="16" src="/img/icon/$1.svg"/>`)
 }
 
-/** @param h Language highlight */
-export default function Code({ c, ic, h, style }: { 
+export default function Code({ c, sf, ic, h, style }: {
+  /** Code string */
   c?: string
+  /** Skip formatting */
+  sf?: boolean
+  /** Inline code string */
   ic?: string
+  /** Highlight format */
   h?: string
+  /** Inline style object */
   style?: React.CSSProperties
- }) {
+}) {
   ic = ic?.replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
-  if (c)
+  if (c && !sf)
     c = literalStringTab(c)
 
   if (c && h)
@@ -58,30 +63,30 @@ export default function Code({ c, ic, h, style }: {
           dangerouslySetInnerHTML={{ __html: icons(c) }}></code>
         <h6>Double click to copy</h6>
       </section>
-    : c ?
-      <section>
-        <code
-          onDoubleClick={(ev) => handleCopy(ev)}
-          className={styles.code}
-          style={style ? style : {}}
-          dangerouslySetInnerHTML={{
-            __html: icons(c)
-              .split('\n')
-              .map(e => `<span>${e}</span>`)
-              .filter(e => e)
-              .join('')
-              .replace(/<span><\/span>/g, '')
-          }}></code>
-        <h6>Double click to copy</h6>
-      </section>
-    : ic ?
-      <code
-        className={styles.inlineCode}
-        dangerouslySetInnerHTML={{
-          __html: icons(ic.split('\n')
-            .map(e => e.trim())
-            .join(''))
-        }}></code>
-    : ''
+      : c ?
+        <section>
+          <code
+            onDoubleClick={(ev) => handleCopy(ev)}
+            className={styles.code}
+            style={style ? style : {}}
+            dangerouslySetInnerHTML={{
+              __html: icons(c)
+                .split('\n')
+                .map(e => `<span>${e}</span>`)
+                .filter(e => e)
+                .join('')
+                .replace(/<span><\/span>/g, '')
+            }}></code>
+          <h6>Double click to copy</h6>
+        </section>
+        : ic ?
+          <code
+            className={styles.inlineCode}
+            dangerouslySetInnerHTML={{
+              __html: icons(ic.split('\n')
+                .map(e => e.trim())
+                .join(''))
+            }}></code>
+          : ''
   )
 }

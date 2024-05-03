@@ -17,7 +17,7 @@ export default function Home() {
         <section className={styles.headerDescription}>Devapix</section>
       </header>
       <section className={styles.bigWrapper}>
-        <Link href='https://devicon.dev'>
+        <a href='https://devicon.dev'>
           <section className={styles.card}>
             <Image
               src='https://devapix.vercel.app/api?devicon'
@@ -32,7 +32,7 @@ export default function Home() {
               </p>
             </article>
           </section>
-        </Link>
+        </a>
 
         <Link href='/docs'>
           <section className={styles.card}>
