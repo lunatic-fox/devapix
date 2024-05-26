@@ -63,7 +63,7 @@ export default function Page() {
         (icon | i): string
 
         // Optional properties
-        (pv | project-version): string
+        (r | release): string
         (v | version):
             'o'  | 'original'
           | 'p'  | 'plain'
@@ -86,14 +86,14 @@ export default function Page() {
         c={`
         <devicon 
           icon="facebook" 
-          project-version="2.7" 
+          release="2.7" 
           version="plain" 
           color="#c7bd2b" 
           size="64"/>
       `} />
       <ReqResExample
         title={false}
-        reqs={['facebook&project-version=2.7&version=plain&color=c7bd2b&size=64']} />
+        reqs={['facebook&release=2.7&version=plain&color=c7bd2b&size=64']} />
       <hr />
       <h4>ChakraUI icon</h4>
       <h5>Code</h5>
@@ -101,8 +101,8 @@ export default function Page() {
         h='html'
         c={`
         <devicon 
-          icon="chakraui" 
-          pv="dev" 
+          i="chakraui" 
+          r="dev" 
           v="o" 
           t="d" 
           s="64"/>
