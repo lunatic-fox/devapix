@@ -78,9 +78,6 @@
   font-size: 14px;
 }
 
-/* @media (max-width: 800px) {
-  .code,
-  .highlightCode {
-    max-width: calc(100vw - 80px);
-  }
-} */
+.codeGet {
+  background: #2a5739;
+}

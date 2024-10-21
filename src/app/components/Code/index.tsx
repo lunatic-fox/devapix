@@ -7,6 +7,8 @@ import 'highlight.js/styles/tokyo-night-dark.css'
 
 function icons(str: string) {
   return str
+    .replace(/(^GET\s)(.+)/gm, '<span style="color: lime;font-weight: 700">$1</span>$2')
+    .replace(/{(.+?)}/g, '<span style="color: #ffd900">{$1}</span>')
     .replace(/(#[a-f0-9]{3,8})\[(.+?)\]/gi, '<span style="color: $1">$2</span>')
     .replace(/@\[([a-z0-9]+?)\]/g, `<img width="16" src="/img/icon/$1.svg"/>`)
 }
@@ -67,7 +69,7 @@ export default function Code({ c, sf, ic, h, style }: {
         <section>
           <code
             onDoubleClick={(ev) => handleCopy(ev)}
-            className={styles.code}
+            className={c.match(/^GET.+/) ? `${styles.code} ${styles.codeGet}`: styles.code }
             style={style ? style : {}}
             dangerouslySetInnerHTML={{
               __html: icons(c)

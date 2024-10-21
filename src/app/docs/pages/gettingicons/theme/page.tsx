@@ -1,4 +1,5 @@
 import Code from '@/app/components/Code'
+import Table from '@/app/components/Table'
 import Docs from '@/app/docs/components/Docs'
 import ReqResExample from '@/app/docs/components/ReqResExample'
 
@@ -13,13 +14,23 @@ export default function Page() {
       </p>
 
       <Code c={`
-        @[connector]?[ICON_NAME]&theme=dark
-        @[connector]?[ICON_NAME]&t=d`} />
+        GET /api?{iconName}&theme={theme}
+        GET /api?{iconName}&t={theme}`} />
 
-      <ReqResExample reqs={[
-        'p5js&theme=dark',
-        'p5js&t=l'
+      <h4>Examples</h4>
+      <Table header={['Parameter', 'Value']} rows={[
+        ['iconName', 'p5js'],
+        ['theme', 'dark | d']
       ]} />
+      <ReqResExample reqs={['p5js&theme=dark']} title={false} />
+
+      <hr />
+
+      <Table header={['Parameter', 'Value']} rows={[
+        ['iconName', 'p5js'],
+        ['t', 'light | l']
+      ]} />
+      <ReqResExample reqs={['p5js&t=l']} title={false} />
     </Docs>
   )
 }
