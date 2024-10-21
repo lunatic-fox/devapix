@@ -6,7 +6,8 @@ const indexProto: { [k: string]: null | string[] } = {
     'Version',
     'Size',
     'Color',
-    'Theme'
+    'Theme',
+    'More examples'
   ],
   gettingInfo: [
     'Icon',

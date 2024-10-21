@@ -19,7 +19,7 @@ export default function Docs({ title, children }: {
 
   const sidebarId = useId()
   const [headerOptions, setHeaderOptions] = useState(false)
-  const handleHeaderOptions = (ev: React.MouseEvent) => {
+  const handleHeaderOptions = (_: React.MouseEvent) => {
     setHeaderOptions(!headerOptions)
     const sidebarElement = document.getElementById(sidebarId) as HTMLElement
     sidebarElement.style.display = headerOptions ? 'none' : 'block'

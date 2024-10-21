@@ -1,4 +1,5 @@
 import Code from '@/app/components/Code'
+import Table from '@/app/components/Table'
 import Docs from '@/app/docs/components/Docs'
 import ReqResExample from '@/app/docs/components/ReqResExample'
 import responseStyle from '@/app/docs/components/ReqResExample/index.module.css'
@@ -43,17 +44,16 @@ export default function Page() {
 
       <h3>Element name</h3>
       <p>
-        All React element names follow this pattern: <Code ic={'<Devicon[Icon name]/>'} />, see the examples below.
+        All React element names follow this pattern: <Code ic={'<Devicon{Icon name}/>'} />, see the examples below.
       </p>
-      <Code
-        h='ts'
-        c={`
-          python:     <DeviconPython/>
-          javascript: <DeviconJavascript/>
-          typescript: <DeviconTypescript/>
-          java:       <DeviconJava/>
-          ruby:       <DeviconRuby/>
-        `} />
+      <Table header={['Icon name', 'React element']} rows={[
+        ['python', '<DeviconPython/>'],
+        ['javascript', '<DeviconJavascript/>'],
+        ['typescript', '<DeviconTypescript/>'],
+        ['java', '<DeviconJava/>'],
+        ['csharp', '<DeviconCsharp/>'],
+        ['ruby', '<DeviconRuby/>'],
+      ]}/>
 
       <h3>Release</h3>
       <p>
@@ -107,20 +107,18 @@ export default function Page() {
       <p>
         The other properties are optional attributes and the same as API request, take a look at the list below.
       </p>
-      <Code
-        h='ts'
-        c={`
-        version:
-            'o'  | 'original'
-          | 'p'  | 'plain'
-          | 'l'  | 'line'
-          | 'ow' | 'original-wordmark'
-          | 'pw' | 'plain-wordmark'
-          | 'lw' | 'line-wordmark'
-        color: string
-        theme: 'd' | 'dark' | 'l' | 'light'
-        size: number // default: 128
-      `} />
+      <Table header={['Property', 'Value']} rows={[
+        ['version', 'original | o'],
+        ['', '^plain | p'],
+        ['', '^line | l'],
+        ['', '^original-wordmark | ow'],
+        ['', '^plain-wordmark | pw'],
+        ['', '^line-wordmark | lw'],
+        ['color', 'string'],
+        ['theme', 'dark | d'],
+        ['', '^light | l'],
+        ['size', 'number (default: 128)'],
+      ]}/>
       <p>
         Here we have more examples using the rest of properties.
       </p>

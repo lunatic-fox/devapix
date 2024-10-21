@@ -1,4 +1,5 @@
 import Code from '@/app/components/Code'
+import Table from '@/app/components/Table'
 import Docs from '@/app/docs/components/Docs'
 import ReqResExample from '@/app/docs/components/ReqResExample'
 
@@ -56,25 +57,21 @@ export default function Page() {
       <p>
         The properties expected by <Code ic='<devicon>' /> are the same of API request.
       </p>
-      <Code
-        h='ts'
-        c={`
-        // Mandatory property
-        (icon | i): string
 
-        // Optional properties
-        (r | release): string
-        (v | version):
-            'o'  | 'original'
-          | 'p'  | 'plain'
-          | 'l'  | 'line'
-          | 'ow' | 'original-wordmark'
-          | 'pw' | 'plain-wordmark'
-          | 'lw' | 'line-wordmark'
-        (c | color): string
-        (t | theme): 'd' | 'dark' | 'l' | 'light'
-        (s | size): number
-      `} />
+      <Table header={['Property', 'Value']} rows={[
+        ['icon | i (required)', 'string'],
+        ['release | r', 'string'],
+        ['version | v', 'original | o'],
+        ['', '^plain | p'],
+        ['', '^line | l'],
+        ['', '^original-wordmark | ow'],
+        ['', '^plain-wordmark | pw'],
+        ['', '^line-wordmark | lw'],
+        ['color | c', 'string'],
+        ['theme | t', 'dark | d'],
+        ['', '^light | l'],
+        ['size | s', 'string'],
+      ]}/>
       <hr />
       <p>
         Here we have two more examples of <Code ic='<devicon>' /> using the rest of properties.

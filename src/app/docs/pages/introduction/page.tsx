@@ -11,7 +11,7 @@ export default function Page() {
         The main feature of Devapix is to modify icons in some properties such as color and size on the fly. However, it is possible to have information about icons and early access to new ones as well.
       </p>
       <p>
-        This API uses only GET method and the base URL is <Code ic={'https://devapix.vercel.app/api'} /> that will be represented through this documentation as <Code ic={'@[connector]'} /> symbol.
+        This API uses only GET method and the base URL is <Code ic={'https://devapix.vercel.app/api'} />.
       </p>
     </Docs>
   )

@@ -1,0 +1,24 @@
+.tableWrapper {
+  margin: 5px;
+  border-radius: 5px;
+  background: var(--code-background);
+}
+
+.table {
+  width: 100%;
+  display: table;
+  font-family: 'Fira Mono', monospace;
+  font-size: .9rem;
+}
+
+.tr { display: flex }
+
+.th, .td, .tdNone {
+  width: 100%;
+  text-align: left;
+  padding: 5px 15px;
+}
+
+.td { border-top: 1px solid var(--g4d) }
+.tdNone { border-top: none }
+.th { font-weight: 700 }
